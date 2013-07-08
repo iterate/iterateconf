@@ -1,11 +1,13 @@
 require.config({
-    paths: {
-        jquery: 'libs/jquery',
-    },
+  paths: {
+    jquery: 'libs/jquery'
+  },
+  shim: {
+    swipe: { exports: 'Swipe' }
+  }
 });
 
 require(['app'], function (app, $) {
-    'use strict';
-    // use app here
-    console.log(app);
+  'use strict';
+  app.initTalks();
 });

@@ -27,7 +27,7 @@ $em-base: 16px !default;
 
 // $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: Georgia, serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -123,10 +123,11 @@ $em-base: 16px !default;
 
 // Heading font styles
 
-$header-font-family: 'Oleo Script', sans-serif;
+//$header-font-family: 'Oleo Script', sans-serif;
+$header-font-family: 'Droid Serif', georgia, serif;
 
 // $header-font-weight: bold;
-// $header-font-style: normal;
+$header-font-style: italic;
 // $header-font-color: #222;
 // $header-line-height: 1.4;
 // $header-top-margin: .2em;
@@ -157,7 +158,7 @@ $header-font-family: 'Oleo Script', sans-serif;
 
 // Paragraphs
 
-// $paragraph-font-family: inherit;
+$paragraph-font-family: Georgia, serif;
 // $paragraph-font-weight: normal;
 // $paragraph-font-size: 1em;
 // $paragraph-line-height: 1.6;
@@ -1158,7 +1159,7 @@ $header-font-family: 'Oleo Script', sans-serif;
 
 // Background color for the top bar
 
-// $topbar-bg:                            #111 !default;
+$topbar-bg: #006fac;
 
 // Height and margin
 

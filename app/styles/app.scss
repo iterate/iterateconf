@@ -1,14 +1,59 @@
-// Foundation overrides
-.top-bar {
-  background-color: #006fac;
-}
-.panel {
-  max-width: 220px; // Max profile image size, sorta makes stuff ugly
+$mobile-screen: 480px;
+// Custom stuff
+body {
+  padding-top: 50px;
+  background-color: rgb(253, 253, 253);
+  color: #111;
 }
 
-// Custom stuff
+.talk {
+  padding-bottom: 20px;
+  h2 {
+      text-align: center;
+      margin-bottom: 0;
+  }
+  .byline {
+      display: block;
+      margin-top: 0.38095em;
+      margin-bottom: 1.90476em;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.2em;
+      font-size: 0.9em;
+      font-family: "Droid Serif", Georgia, serif;
+  }
+}
+
 .panel-profile {
   width: 220px;
   height: 180px;
+}
 
+.parallell-indicator {
+  display: none;
+}
+
+@media only screen and (max-width: #{$mobile-screen}) {
+  .parallell-talks {
+    max-width: 320px;
+    overflow: hidden;
+    position: relative;
+  }
+  .parallell-wrap {
+    position: relative;
+    overflow: hidden;
+    & > div {
+      float: left;
+      width: 100%;
+      position: relative;
+    }
+  }
+  .parallell-article {
+    max-width: 320px;
+  }
+  .parallell-indicator {
+    display: block;
+    text-align: center;
+    letter-spacing: 4px;
+  }
 }

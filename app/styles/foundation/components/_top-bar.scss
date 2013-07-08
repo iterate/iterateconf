@@ -113,10 +113,10 @@ $topbar-sticky-class:                  ".sticky" !default;
         line-height: $topbar-height;
         font-size: $topbar-title-font-size;
         margin: 0;
+        text-align: center;
         a {
           font-weight: $topbar-title-weight;
           color: $topbar-link-color;
-          width: 50%;
           display: block;
           padding: 0 $topbar-height / 3;
         }
