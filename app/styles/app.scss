@@ -1,13 +1,76 @@
+$menu-push-width: 120px;
 $mobile-screen: 480px;
 // Custom stuff
 body {
   padding-top: 50px;
   background-color: rgb(253, 253, 253);
   color: #111;
+  position: relative;
+}
+.menu-push {
+  position: fixed;
+  top: 0;
+  left: -$menu-push-width;
+  width: $menu-push-width;
+  height: 100%;
+  z-index: 100;
+
+  padding-top: 45px;
+
+  background-color: #006fac;
+  -webkit-transition: all 0.3s ease;
+     -moz-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+
+  a {
+    display: block;
+    padding: 0.6em 0.5em;
+    color: #fff;
+    &:hover {
+      font-style: italic;
+    }
+  }
+}
+.menu-push-item {
+  overflow-x: hidden;
+  left: 0;
+  -webkit-transition: all 0.3s ease;
+     -moz-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+}
+
+.menu-timeslots {
+  position: absolute;
+  left: emCalc(15px);
+  top: 50%;
+  margin-top: - emCalc(35px/2);
+
+  background-color: #fdfdfd;
+  background-image: -webkit-gradient(linear,left top,left
+  bottom,from(#fdfdfd),to(#d6d6d6));
+  background-image: -webkit-linear-gradient(top,#fdfdfd,#d6d6d6);
+  color: #222;
+  line-height: emCalc(35px);
+  padding: 0 emCalc(20px);
+
+  border: 1px solid #222;
+  border-radius: 2px;
+
+  &:hover {
+    background-image: -webkit-linear-gradient(top,#fdfdfd,#c2c2c2);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fdfdfd),to(#c2c2c2));
+  }
+
+  &:active {
+    background-color: inherit;
+    -webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .talk {
-  padding-bottom: 20px;
+  position: relative;
+  padding-bottom: emCalc(40px);
   h2 {
       text-align: center;
       margin-bottom: 0;
@@ -24,13 +87,21 @@ body {
   }
 }
 
-.panel-profile {
-  width: 220px;
-  height: 180px;
+.timeslot {
+  text-align: center;
+  line-height: 2em;
+  background-color: whiteSmoke;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+  margin-bottom: emCalc(10px);
 }
 
-.parallell-indicator {
-  display: none;
+.profile {
+  text-align: center;
+  img {
+      width: 220px;
+      height: 180px;
+  }
 }
 
 @media only screen and (max-width: #{$mobile-screen}) {
@@ -51,9 +122,14 @@ body {
   .parallell-article {
     max-width: 320px;
   }
-  .parallell-indicator {
-    display: block;
-    text-align: center;
-    letter-spacing: 4px;
+  .parallell-indicator:after {
+    content: '→';
+    position: absolute;
+    right: emCalc(10px);
+  }
+  .parallell-indicator:before {
+    content: '←';
+    position: absolute;
+    left: emCalc(10px);
   }
 }

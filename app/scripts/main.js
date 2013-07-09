@@ -7,7 +7,8 @@ require.config({
   }
 });
 
-require(['app'], function (app, $) {
+require(['app', 'menu'], function (app, menu) {
   'use strict';
   app.initTalks();
+  menu.init();
 });
