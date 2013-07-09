@@ -15,10 +15,10 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
   var buildMenu = function () {
     var nav = document.createElement('nav');
     nav.className = 'menu-push';
-    program.timeslots.forEach(function (slot, i) {
+    program.roughTimeslots.forEach(function (slot) {
       var item = document.createElement('a');
-      item.href = '#slot-' + i;
-      item.textContent = slot;
+      item.href = '#slot-' + slot.id;
+      item.textContent = slot.str;
       item.onclick = smoothscroll.toHref
       nav.appendChild(item);
     });

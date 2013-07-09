@@ -43,11 +43,10 @@ body {
   position: absolute;
   left: emCalc(15px);
   top: 50%;
-  margin-top: - emCalc(35px/2);
+  margin-top: -1.15em;
 
   background-color: #fdfdfd;
-  background-image: -webkit-gradient(linear,left top,left
-  bottom,from(#fdfdfd),to(#d6d6d6));
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fdfdfd),to(#d6d6d6));
   background-image: -webkit-linear-gradient(top,#fdfdfd,#d6d6d6);
   background-image: -moz-linear-gradient(top,#fdfdfd,#d6d6d6);
   background-image: linear-gradient(top,#fdfdfd,#d6d6d6);
@@ -100,6 +99,7 @@ body {
 
 .profile {
   text-align: center;
+  padding-top: emCalc(10px);
   img {
       width: 220px;
       height: 180px;
@@ -109,10 +109,13 @@ body {
 @media only screen and (max-width: #{$mobile-screen}) {
   .text-col {
     margin: 0 auto;
-    width: 320px;
+    width: 310px;
+  }
+  .top-bar .name h1 {
+    text-align: right;
   }
   .parallell-talks {
-    max-width: 320px;
+    max-width: 340px;
     overflow: hidden;
     position: relative;
   }
@@ -126,7 +129,7 @@ body {
     }
   }
   .parallell-article {
-    max-width: 320px;
+    max-width: 310px;
   }
   .parallell-indicator:after {
     content: '→';
