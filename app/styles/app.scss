@@ -49,6 +49,8 @@ body {
   background-image: -webkit-gradient(linear,left top,left
   bottom,from(#fdfdfd),to(#d6d6d6));
   background-image: -webkit-linear-gradient(top,#fdfdfd,#d6d6d6);
+  background-image: -moz-linear-gradient(top,#fdfdfd,#d6d6d6);
+  background-image: linear-gradient(top,#fdfdfd,#d6d6d6);
   color: #222;
   line-height: emCalc(35px);
   padding: 0 emCalc(20px);
@@ -105,6 +107,10 @@ body {
 }
 
 @media only screen and (max-width: #{$mobile-screen}) {
+  .text-col {
+    margin: 0 auto;
+    width: 320px;
+  }
   .parallell-talks {
     max-width: 320px;
     overflow: hidden;

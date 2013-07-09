@@ -24,7 +24,7 @@ define(['talks', 'program', 'swipe'], function (talks, program, Swipe) {
       '  <article class="large-12 columns">',
       '    <h2>' + talk.title + '</h2>',
       '    <span class="byline">' + talk.username + '</span>',
-      '    <p>' + talk.beskrivelse + '</p>',
+      '    <p class="text-col">' + talk.beskrivelse + '</p>',
       '    <figure class="profile">', //
       '      <img src="' + talk.img + '" />',
       '    </figure>',
@@ -40,7 +40,7 @@ define(['talks', 'program', 'swipe'], function (talks, program, Swipe) {
         '<div class="large-6 columns">',
         '  <h2>' + talk.title + '</h2>',
         '  <span class="byline">' + talk.username + '</span>',
-        '  <p>' + talk.beskrivelse + '</p>',
+        '  <p class="text-col">' + talk.beskrivelse + '</p>',
         '  <figure class="profile">',
         '    <img src="' + talk.img + '" />',
         '  </figure>',

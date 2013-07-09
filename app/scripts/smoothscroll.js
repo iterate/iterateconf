@@ -47,10 +47,11 @@ define([], function () {
   }
 
   var toHref = function (event) {
-    console.log(event);
     event.preventDefault();
     var elId = event.target.hash.replace('#','');
     smoothScroll(elId);
+
+    return false;
   };
   
   return {
