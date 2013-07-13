@@ -112,6 +112,17 @@ body {
       height: 180px;
   }
 }
+.colophon {
+    text-align: right;
+    padding-bottom: 20px;
+}
+
+@media #{$medium} {
+  .text-col {
+    margin: 0 auto;
+    max-width: 35em;
+  }
+}
 
 @media only screen and (max-width: #{$mobile-screen}) {
   .text-col {
