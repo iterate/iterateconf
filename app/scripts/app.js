@@ -11,7 +11,7 @@ define(['talks', 'program', 'swipe'], function (talks, program, Swipe) {
     var talk = talks[talkId];
     talk.user = talk.username.split('@')[0];
     talk.beskrivelse = talk.beskrivelse.replace('\n', '<br>');
-    talk.img = 'mennesker/' + talk.user + '.jpg';
+    talk.img = 'images/' + talk.user + '.jpg';
     return talk;
   };
 

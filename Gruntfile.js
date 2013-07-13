@@ -23,14 +23,6 @@ module.exports = function (grunt) {
     grunt.initConfig({
         yeoman: yeomanConfig,
         watch: {
-            coffee: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
-                tasks: ['coffee:dist']
-            },
-            coffeeTest: {
-                files: ['test/spec/{,*/}*.coffee'],
-                tasks: ['coffee:test']
-            },
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass']
@@ -58,16 +50,6 @@ module.exports = function (grunt) {
                             lrSnippet,
                             mountFolder(connect, '.tmp'),
                             mountFolder(connect, 'app')
-                        ];
-                    }
-                }
-            },
-            test: {
-                options: {
-                    middleware: function (connect) {
-                        return [
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test')
                         ];
                     }
                 }
@@ -100,38 +82,8 @@ module.exports = function (grunt) {
                 '<%= yeoman.app %>/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/scripts/vendor/*',
                 '!<%= yeoman.app %>/scripts/libs/*',
-                '!<%= yeoman.app %>/scripts/plugins/*',
-                'test/spec/{,*/}*.js'
+                '!<%= yeoman.app %>/scripts/plugins/*'
             ]
-        },
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://localhost:<%= connect.options.port %>/index.html']
-                }
-            }
-        },
-        coffee: {
-            dist: {
-                files: [{
-                    // rather than compiling multiple files here you should
-                    // require them into your main .coffee file
-                    expand: true,
-                    cwd: '<%= yeoman.app %>/scripts',
-                    src: '*.coffee',
-                    dest: '.tmp/scripts',
-                    ext: '.js'
-                }]
-            },
-            test: {
-                files: [{
-                    expand: true,
-                    cwd: '.tmp/spec',
-                    src: '*.coffee',
-                    dest: 'test/spec'
-                }]
-            }
         },
         compass: {
             options: {
@@ -186,16 +138,6 @@ module.exports = function (grunt) {
                 dirs: ['<%= yeoman.dist %>']
             }
         },
-        imagemin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= yeoman.app %>/images',
-                    src: '{,*/}*.{png,jpg,jpeg}',
-                    dest: '<%= yeoman.dist %>/images'
-                }]
-            }
-        },
         cssmin: {
             dist: {
                 files: {
@@ -237,7 +179,7 @@ module.exports = function (grunt) {
                     src: [
                         '*.{ico,txt}',
                         '.htaccess',
-                        'images/{,*/}*.{webp,gif}'
+                        'images/**/*'
                     ]
                 }]
             }
@@ -258,7 +200,6 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'coffee:dist',
             'compass:server',
             'livereload-start',
             'connect:livereload',
@@ -267,21 +208,11 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('test', [
-        'clean:server',
-        'coffee',
-        'compass',
-        'connect:test',
-        'mocha'
-    ]);
-
     grunt.registerTask('build', [
         'clean:dist',
-        'coffee',
         'compass:dist',
         'useminPrepare',
         'requirejs',
-        'imagemin',
         'htmlmin',
         'concat',
         'cssmin',
@@ -291,7 +222,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
-        'test',
         'build'
     ]);
 };
