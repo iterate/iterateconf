@@ -3,11 +3,12 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
   'use strict';
 
   var _leftMenuToggled = false;
-  var menuWidth = '120px';
+  var menuWidth = '160px';
 
   var uiCache = {
     btn: document.getElementById('menu-timeslots'),
     body: document.body,
+    talks: document.getElementById('talks'),
     topMenu: document.getElementById('top-menu'),
     leftMenu: null
   };
@@ -25,20 +26,31 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
     return nav;
   };
 
+  var toggleMainContentClickHandler = function (enable) {
+    if (enable) {
+      uiCache.talks.onclick = toggleMenu;
+    }
+    else {
+      uiCache.talks.onclick = null;
+    }
+  };
+
   var toggleMenu = function () {
     if (_leftMenuToggled) {
       uiCache.leftMenu.style.left = '-' + menuWidth;
       uiCache.body.style.left = '0px';
       uiCache.topMenu.style.left = '0px';
+      toggleMainContentClickHandler(false);
     } else {
       uiCache.leftMenu.style.left = '0px';
       uiCache.body.style.left = menuWidth;
       uiCache.topMenu.style.left = menuWidth;
+      toggleMainContentClickHandler(true);
     }
     _leftMenuToggled = !_leftMenuToggled;
   };
 
-  var addSideMenu = function () {
+  function addSideMenu () {
     var nav = buildMenu();
     uiCache.body.appendChild(nav);
     uiCache.leftMenu = nav;
