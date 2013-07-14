@@ -9,9 +9,9 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
 
   var getTalk = function (talkId) {
     var talk = talks[talkId];
-    talk.user = talk.username.split('@')[0];
+    var user = talk.username.split('@')[0];
     talk.beskrivelse = talk.beskrivelse.replace('\n', '<br>');
-    talk.img = 'images/' + talk.user + '.jpg';
+    talk.img = 'images/' + user + '.jpg';
     return talk;
   };
 
@@ -22,8 +22,8 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
       '<div class="timeslot" id="slot-' + slotId + '">' + timeslot + '</div>',
       '<div class="row">',
       '  <article class="large-12 columns">',
-      '    <h2>' + talk.title + '</h2>',
-      '    <span class="byline">' + talk.username + '</span>',
+      '    <h2>' + talk.tittel + '</h2>',
+      '    <div class="byline">' + talk.username + '</div>',
       '    <p class="text-col">' + talk.beskrivelse + '</p>',
       '    <figure class="profile">', //
       '      <img src="' + talk.img + '" />',
@@ -36,16 +36,22 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
   var buildParallell = function (talkId1, talkId2, slotId) {
     var timeslot = program.timeslots[slotId];
     var buildParallellTalk = function (talk) {
-      return [
+      var tmpl = [
         '<div class="large-6 columns">',
-        '  <h2>' + talk.title + '</h2>',
-        '  <span class="byline">' + talk.username + '</span>',
+        '  <h2>' + talk.tittel + '</h2>',
+        '  <div class="byline">' + talk.username + '</div>',
         '  <p class="text-col">' + talk.beskrivelse + '</p>',
         '  <figure class="profile">',
         '    <img src="' + talk.img + '" />',
         '  </figure>',
         '</div>'
-      ].join('\n');
+      ];
+      if (talk.workshop) {
+        var workshopWarning = '<div class="workshop">Obs! Workshop</div>';
+        tmpl.splice(3, 0, workshopWarning);
+        console.log(tmpl);
+      }
+      return tmpl.join('\n');
     };
 
     return [

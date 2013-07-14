@@ -1,6 +1,30 @@
 {
   "name": "iterateconf",
   "version": "0.0.1",
+  "author": "Iterate Dev <tech@iterate.no>",
+  "description": "The schedule for the Iterate Conference",
+  "contributors": [
+    {
+      "name": "Pål Ruud",
+      "email": "pal.ruud@iterate.no"
+    }
+  ],
+  "scripts": {
+    "start": "grunt server",
+    "update-schedule": "node bin/update-schedule.js"
+  },
+  "repository": [
+    {
+      "type": "git",
+      "url": "https://github.com/iterate/iterateconf.git"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/iterate/iterateconf/master/LICENSE-MIT"
+    }
+  ],
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -20,7 +44,8 @@
     "grunt-regarde": "~0.1.1",
     "grunt-open": "~0.2.0",
     "grunt-concurrent": "~0.1.0",
-    "matchdep": "~0.1.1"
+    "matchdep": "~0.1.1",
+    "tabletop": "~1.3.2"
   },
   "engines": {
     "node": ">=0.8.0"
