@@ -216,6 +216,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
+    'jshint',
     'clean:dist',
     'compass:dist',
     'useminPrepare',
@@ -229,7 +230,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'jshint',
     'build'
   ]);
 };

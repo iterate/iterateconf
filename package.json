@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "start": "grunt server",
+    "build": "grunt build",
     "update-schedule": "node bin/update-schedule.js"
   },
   "repository": [

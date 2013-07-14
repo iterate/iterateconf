@@ -231,6 +231,14 @@ define([], function () {
     "workshop": false,
     "rowNumber": 29,
     "beskrivelse": "Presentation on how to make a simple iOS7 application. "
+  },
+  {
+    "username": "kent@iterate.no",
+    "tittel": "Keynote",
+    "vanskelighetsgrad": "Nybegynner",
+    "workshop": false,
+    "rowNumber": 30,
+    "beskrivelse": "Keynote"
   }
 ];
 });

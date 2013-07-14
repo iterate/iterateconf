@@ -45,9 +45,7 @@ See `bin/update-schedule.js` for how that works.
 
 # TODO
 
-* Push to GitHub
-* Deploy
 * Offline support
 * Better visualization of workshops, too much repeating now
 * Listen to break point events, and toggle Swipe
-* Handle routing on initial load
+* Handle routing on initial load, jump to current time

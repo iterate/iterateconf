@@ -47,9 +47,8 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
         '</div>'
       ];
       if (talk.workshop) {
-        var workshopWarning = '<div class="workshop">Obs! Workshop</div>';
+        var workshopWarning = '<div class="workshop">Behold! A workshop.</div>';
         tmpl.splice(3, 0, workshopWarning);
-        console.log(tmpl);
       }
       return tmpl.join('\n');
     };

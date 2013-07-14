@@ -58,7 +58,7 @@ define([], function () {
     [15, 22],
     [17, 22],
     [21, 22],
-    [28]
+    [29]
   ];
   return {
     roughTimeslots: roughTimeslots,
