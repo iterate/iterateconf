@@ -10,7 +10,7 @@ body {
 .menu-push {
   position: fixed;
   top: 0;
-  left: -$menu-push-width;
+  left: 0;
   width: $menu-push-width;
   height: 100%;
   z-index: 100;
@@ -41,7 +41,10 @@ body {
           transition: all 0.3s ease;
 }
 
-.menu-timeslots {
+.menu-timeslots-btn {
+  // Default to not show
+  display: none;
+
   position: absolute;
   left: emCalc(15px);
   top: 50%;
@@ -131,6 +134,13 @@ body {
   }
   .top-bar .name h1 {
     text-align: right;
+  }
+  .menu-timeslots-btn {
+    // Default to not show
+    display: inline;
+  }
+  .menu-push {
+    left: -$menu-push-width;
   }
   .parallell-talks {
     max-width: 340px;

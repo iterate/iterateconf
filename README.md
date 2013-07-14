@@ -14,6 +14,7 @@ http://jsfiddle.net/R3hEG/
 
 # TODO
 
-* Text-wrap on all break points
+* Listen to break point events, and toggle Swipe
 * Handle routing on initial load
 * Better parsing of program
+* Update program

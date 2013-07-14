@@ -1,4 +1,4 @@
-/*global define*/
+/*global define,document*/
 define(['program', 'smoothscroll'], function (program, smoothscroll) {
   'use strict';
 
@@ -6,7 +6,7 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
   var menuWidth = '160px';
 
   var uiCache = {
-    btn: document.getElementById('menu-timeslots'),
+    btn: document.getElementById('menu-timeslots-btn'),
     body: document.body,
     talks: document.getElementById('talks'),
     topMenu: document.getElementById('top-menu'),
@@ -20,7 +20,7 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
       var item = document.createElement('a');
       item.href = '#slot-' + slot.id;
       item.textContent = slot.str;
-      item.onclick = smoothscroll.toHref
+      item.onclick = smoothscroll.toHref;
       nav.appendChild(item);
     });
     return nav;
@@ -50,7 +50,7 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
     _leftMenuToggled = !_leftMenuToggled;
   };
 
-  function addSideMenu () {
+  var addSideMenu = function () {
     var nav = buildMenu();
     uiCache.body.appendChild(nav);
     uiCache.leftMenu = nav;

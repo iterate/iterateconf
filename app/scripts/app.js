@@ -1,5 +1,5 @@
-/*global define*/
-define(['talks', 'program', 'swipe'], function (talks, program, Swipe) {
+/*global define,document*/
+define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
   'use strict';
   var uiCache = {
     talks: document.getElementById('talks')
@@ -44,12 +44,13 @@ define(['talks', 'program', 'swipe'], function (talks, program, Swipe) {
         '  <figure class="profile">',
         '    <img src="' + talk.img + '" />',
         '  </figure>',
-        '</div>',
+        '</div>'
       ].join('\n');
     };
 
     return [
-      '<div class="timeslot parallell-indicator" id="slot-' + slotId + '">' + timeslot + '</div>',
+      '<div class="timeslot parallell-indicator" id="slot-' + slotId + '">',
+      timeslot + '</div>',
       '<div class="row parallell-talks">',
       '  <div class="parallell-wrap">',
       buildParallellTalk(getTalk(talkId1)),
