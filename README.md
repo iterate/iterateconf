@@ -14,7 +14,9 @@ http://jsfiddle.net/R3hEG/
 
 # TODO
 
+* Update program
+* Push to GitHub
+* Deploy
 * Listen to break point events, and toggle Swipe
 * Handle routing on initial load
 * Better parsing of program
-* Update program
