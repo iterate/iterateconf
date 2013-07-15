@@ -121,6 +121,7 @@ module.exports = function (grunt) {
           out: 'dist/scripts/main.js',
           baseUrl: 'app/scripts',
           preserveLicenseComments: false,
+          generateSourceMaps: true,
           useStrict: true,
           almond: true,
           replaceRequireScript: [{
@@ -161,13 +162,11 @@ module.exports = function (grunt) {
       dist: {
         options: {
           removeCommentsFromCDATA: true,
-          // https://github.com/yeoman/grunt-usemin/issues/44
           collapseBooleanAttributes: true,
           removeAttributeQuotes: true,
           removeRedundantAttributes: true,
           useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeOptionalTags: true
+          removeEmptyAttributes: true
         },
         files: [{
           expand: true,
@@ -188,6 +187,30 @@ module.exports = function (grunt) {
         }]
       }
     },
+    replace: {
+      dist: {
+        src: ['<%= yeoman.dist %>/index.html'],
+        dest: '<%= yeoman.dist %>/',
+        replacements: [{
+          from: /<html lang="en">/,
+          to: '<html manifest="manifest.appcache" lang="en">'
+        }]
+      }
+    },
+    manifest: {
+      dist: {
+        options: {
+          basePath: '<%= yeoman.dist %>',
+          verbose: false,
+          timestamp: true
+        },
+        src: [
+          'scripts/{,*/}*.js',
+          'styles/{,*/}*.css'
+        ],
+        dest: '<%= yeoman.dist %>/manifest.appcache'
+      }
+    },
     copy: {
       dist: {
         files: [{
@@ -201,11 +224,6 @@ module.exports = function (grunt) {
             'images/**/*'
           ]
         }]
-      }
-    },
-    bower: {
-      all: {
-        rjsConfig: '<%= yeoman.app %>/scripts/main.js'
       }
     }
   });
@@ -238,7 +256,9 @@ module.exports = function (grunt) {
     'copy',
     'usemin',
     'htmlmin:deploy',
-    'requirejs'
+    'requirejs',
+    'replace',
+    'manifest'
   ]);
 
   grunt.registerTask('default', [
