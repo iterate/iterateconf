@@ -6,8 +6,8 @@ require.config({
   }
 });
 
-require(['app', 'menu'], function (app, menu) {
+require(['schedule', 'menu'], function (schedule, menu) {
   'use strict';
-  app.initTalks();
+  schedule.init();
   menu.init();
 });

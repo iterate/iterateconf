@@ -135,6 +135,7 @@ body {
   }
   .text-col {
     margin: 1.90476em auto 0;
+    max-width: 310px;
   }
   .workshop {
     text-align: center;
@@ -169,29 +170,17 @@ body {
 }
 
 @media #{$medium} {
+  .menu-push-item {
+    left: 60px;
+  }
   .text-col {
     max-width: 35em;
   }
 }
 
-@media only screen and (max-width: #{$mobile-screen}) {
-  .text-col {
-    width: 310px;
-  }
-  .top-menu h1 {
-    text-align: right;
-  }
-  .menu-timeslots-btn {
-    // Default to not show
-    display: inline;
-  }
-  .menu-push {
-    left: -$menu-push-width;
-  }
+@media only screen and (max-width: #{$small-screen}) {
   .parallell-talks {
-    max-width: 340px;
-    overflow: hidden;
-    position: relative;
+    max-width: 770px;
   }
   .parallell-wrap {
     position: relative;
@@ -203,7 +192,22 @@ body {
     }
   }
   .parallell-article {
-    max-width: 310px;
+    max-width: 750px;
+  }
+}
+@media only screen and (max-width: #{$medium-screen}) {
+  .top-menu h1 {
+    text-align: right;
+  }
+  .menu-timeslots-btn {
+    display: inline;
+  }
+  .menu-push {
+    left: -$menu-push-width;
+  }
+  .parallell-talks {
+    overflow: hidden;
+    position: relative;
   }
   .parallell-indicator:after {
     content: '→';

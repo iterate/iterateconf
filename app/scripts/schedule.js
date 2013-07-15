@@ -1,13 +1,59 @@
-/*global define,document*/
+/*jshint browser:true*/
+/*global define*/
 define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
   'use strict';
   var uiCache = {
-    talks: document.getElementById('talks')
+    talks: document.getElementById('talks'),
+    parallellTalks: null
   };
 
-  var isMobile = (document.width < 480);
+  var MAX_MOBILE_SIZE = 768;
+  var MOBILE_MEDIA_QUERY = '(max-width: ' + MAX_MOBILE_SIZE + 'px)';
 
-  var getTalk = function (talkId) {
+  var isMobile = (document.width < MAX_MOBILE_SIZE);
+  var swipeElements = [];
+
+  var _addSwipeToEl = function (el) {
+    return new Swipe(el, { continuous: false });
+  };
+
+  var _getParalellTalksElements = function () {
+    if (!uiCache.parallellTalks) {
+      uiCache.parallellTalks = uiCache.talks.
+        getElementsByClassName('parallell-talks');
+    }
+    return uiCache.parallellTalks;
+  };
+
+  var _removeSwipe = function () {
+    if (!swipeElements.length) {
+      return;
+    }
+    swipeElements.forEach(function (swipeObj) {
+      swipeObj.kill();
+    });
+    swipeElements = [];
+  };
+
+  var _addSwipe = function () {
+    if (swipeElements.length) {
+      return;
+    }
+    var els = _getParalellTalksElements();
+    for (var i = 0; i < els.length; i++) {
+      swipeElements.push(_addSwipeToEl(els[i]));
+    }
+  };
+
+  var _onMediaChange = function (mq, options) {
+    if (mq.matches) {
+      options.entry && options.entry();
+    } else {
+      options.exit && options.exit();
+    }
+  };
+
+  var _getTalk = function (talkId) {
     var talk = talks[talkId];
     var user = talk.username.split('@')[0];
     talk.beskrivelse = talk.beskrivelse.replace('\n', '<br>');
@@ -17,7 +63,7 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
 
   var buildTalk = function (talkId, slotId) {
     var timeslot = program.timeslots[slotId];
-    var talk = getTalk(talkId);
+    var talk = _getTalk(talkId);
     return [
       '<div class="timeslot" id="slot-' + slotId + '">' + timeslot + '</div>',
       '<div class="row">',
@@ -58,8 +104,8 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
       timeslot + '</div>',
       '<div class="row parallell-talks">',
       '  <div class="parallell-wrap">',
-      buildParallellTalk(getTalk(talkId1)),
-      buildParallellTalk(getTalk(talkId2)),
+      buildParallellTalk(_getTalk(talkId1)),
+      buildParallellTalk(_getTalk(talkId2)),
       '  </div>',
       '</div>'
     ].join('\n');
@@ -82,12 +128,27 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
       if (talksInSlot.length === 2) {
         var el = addTalk(buildParallell(talksInSlot[0], talksInSlot[1], i));
         if (isMobile) {
-          new Swipe(el.childNodes[2], { continuous: false });
+          swipeElements.push(_addSwipeToEl(el.childNodes[2]));
         }
         return;
       }
     });
   };
 
-  return { initTalks: initTalks };
+  var addMediaListeners = function () {
+    var hasMatchMediaSupport = (window.matchMedia !== undefined);
+    if (hasMatchMediaSupport) {
+      var mq = window.matchMedia(MOBILE_MEDIA_QUERY);
+      mq.addListener(function () {
+        _onMediaChange(mq, { entry: _addSwipe, exit: _removeSwipe });
+      });
+    }
+  };
+
+  var init = function () {
+    initTalks();
+    addMediaListeners();
+  };
+
+  return { init: init };
 });

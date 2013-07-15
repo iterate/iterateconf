@@ -524,7 +524,7 @@ function Swipe(container, options) {
       while(pos--) {
 
         var slide = slides[pos];
-        slide.style.width = '100%';
+        slide.style.width = '';
         slide.style.left = 0;
 
         if (browser.transitions) translate(pos, 0, 0);

@@ -178,7 +178,7 @@ module.exports = function (grunt) {
       },
       deploy: {
         options: {
-          collapseWhitespace: true,
+          collapseWhitespace: true
         },
         files: [{
           expand: true,
