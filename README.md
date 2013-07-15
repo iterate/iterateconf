@@ -47,6 +47,5 @@ See `bin/update-schedule.js` for how that works.
 
 ## TODO
 
-* Touch icons
 * Better visualization of workshops, too much repeating now
 * Handle routing on initial load, jump to current time

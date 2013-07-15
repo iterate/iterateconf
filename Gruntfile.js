@@ -20,9 +20,11 @@ module.exports = function (grunt) {
     app: 'app',
     dist: 'dist'
   };
+  var cachebust = +(new Date());
 
   grunt.initConfig({
     yeoman: yeomanConfig,
+    cachebust: cachebust,
     watch: {
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -118,7 +120,7 @@ module.exports = function (grunt) {
         options: {
           name: 'main',
           mainConfigFile: 'app/scripts/main.js',
-          out: 'dist/scripts/main.js',
+          out: 'dist/scripts/main.<%= cachebust %>.js',
           baseUrl: 'app/scripts',
           preserveLicenseComments: false,
           generateSourceMaps: true,
@@ -127,7 +129,7 @@ module.exports = function (grunt) {
           replaceRequireScript: [{
             files: ['dist/index.html'],
             module: 'main',
-            modulePath: 'scripts/main'
+            modulePath: 'scripts/main.<%= cachebust %>'
           }],
           optimize: 'uglify2',
           wrap: true
@@ -151,7 +153,7 @@ module.exports = function (grunt) {
     cssmin: {
       dist: {
         files: {
-          '<%= yeoman.dist %>/styles/index.css': [
+          '<%= yeoman.dist %>/styles/index.<%= cachebust %>.css': [
             '.tmp/styles/{,*/}*.css',
             '<%= yeoman.app %>/styles/{,*/}*.css'
           ]
@@ -191,10 +193,18 @@ module.exports = function (grunt) {
       dist: {
         src: ['<%= yeoman.dist %>/index.html'],
         dest: '<%= yeoman.dist %>/',
-        replacements: [{
-          from: /<html lang="en">/,
-          to: '<html manifest="manifest.appcache" lang="en">'
-        }]
+        replacements: [
+          {
+            from: /<html lang="en">/,
+            to: '<html manifest="manifest.appcache" lang="en">'
+          },
+          {
+            from: /<%=cachebust%>/,
+            to: function () {
+              return cachebust;
+            }
+          }
+        ]
       }
     },
     manifest: {
