@@ -107,8 +107,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    // not used since Uglify task does concat,
-    // but still available if needed
+    // requirejs does concat
     /*concat: {
       dist: {}
     },*/
@@ -117,16 +116,19 @@ module.exports = function (grunt) {
         // Options:
         // https://github.com/jrburke/r.js/blob/master/build/example.build.js
         options: {
-          // `name` and `out` is set by grunt-usemin
+          name: 'main',
+          mainConfigFile: 'app/scripts/main.js',
+          out: 'dist/scripts/main.js',
           baseUrl: 'app/scripts',
-          optimize: 'none',
-          // TODO: Figure out how to make sourcemaps work with grunt-usemin
-          // https://github.com/yeoman/grunt-usemin/issues/30
-          //generateSourceMaps: true,
-          // required to support SourceMaps
-          // http://requirejs.org/docs/errors.html#sourcemapcomments
           preserveLicenseComments: false,
           useStrict: true,
+          almond: true,
+          replaceRequireScript: [{
+            files: ['dist/index.html'],
+            module: 'main',
+            modulePath: 'scripts/main'
+          }],
+          optimize: 'uglify2',
           wrap: true
           //uglify2: {} // https://github.com/mishoo/UglifyJS2
         }
@@ -158,19 +160,29 @@ module.exports = function (grunt) {
     htmlmin: {
       dist: {
         options: {
-          /*removeCommentsFromCDATA: true,
+          removeCommentsFromCDATA: true,
           // https://github.com/yeoman/grunt-usemin/issues/44
-          //collapseWhitespace: true,
           collapseBooleanAttributes: true,
           removeAttributeQuotes: true,
           removeRedundantAttributes: true,
           useShortDoctype: true,
           removeEmptyAttributes: true,
-          removeOptionalTags: true*/
+          removeOptionalTags: true
         },
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>',
+          src: '*.html',
+          dest: '<%= yeoman.dist %>'
+        }]
+      },
+      deploy: {
+        options: {
+          collapseWhitespace: true,
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
           src: '*.html',
           dest: '<%= yeoman.dist %>'
         }]
@@ -220,13 +232,13 @@ module.exports = function (grunt) {
     'clean:dist',
     'compass:dist',
     'useminPrepare',
-    'requirejs',
-    'htmlmin',
     'concat',
+    'htmlmin:dist',
     'cssmin',
-    'uglify',
     'copy',
-    'usemin'
+    'usemin',
+    'htmlmin:deploy',
+    'requirejs'
   ]);
 
   grunt.registerTask('default', [

@@ -49,6 +49,8 @@ See `bin/update-schedule.js` for how that works.
 
 * Offline support
 * AlmondJS
+* Always push content when menu is out
+* Fix max-width for middle-range break points
 * Better visualization of workshops, too much repeating now
 * Listen to break point events, and toggle Swipe
 * Handle routing on initial load, jump to current time

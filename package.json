@@ -1,7 +1,7 @@
 {
   "name": "iterateconf",
   "version": "0.0.1",
-  "author": "Iterate Dev <tech@iterate.no>",
+  "author": "Iterate Tech <tech@iterate.no>",
   "description": "The schedule for the Iterate Conference",
   "contributors": [
     {
@@ -31,7 +31,6 @@
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-concat": "~0.1.3",
-    "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-compass": "~0.1.3",
     "grunt-contrib-jshint": "~0.4.1",
     "grunt-contrib-cssmin": "~0.6.0",
