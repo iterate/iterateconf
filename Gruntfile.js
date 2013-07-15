@@ -114,7 +114,7 @@ module.exports = function (grunt) {
     },*/
     requirejs: {
       dist: {
-        // Options: 
+        // Options:
         // https://github.com/jrburke/r.js/blob/master/build/example.build.js
         options: {
           // `name` and `out` is set by grunt-usemin

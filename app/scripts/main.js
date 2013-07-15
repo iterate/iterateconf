@@ -3,9 +3,6 @@ require.config({
   paths: {
     jquery: 'libs/jquery',
     swipe: 'libs/swipe'
-  },
-  shim: {
-    swipe: { exports: 'Swipe' }
   }
 });
 

@@ -1,4 +1,6 @@
-# Color schemes and typography
+# Iterate Conference Schedule App
+
+## Color schemes and typography
 
 Iterate blue is used as the main color. Derivatives from this can be found on
 [Colorhexa][].
@@ -11,7 +13,7 @@ The serif Georgia should be used for all main text content.
 [Droid Serif]: http://www.google.com/fonts/specimen/Droid+Serif
 
 
-# Dependencies and developing
+## Dependencies and developing
 
 Client side, this project is using [VanillaJS][]. Well, except for a bit of
 [Require.JS][].
@@ -22,7 +24,7 @@ well. It can be installed by doing `npm install -g grunt-cli`.
 Run `npm install` in the project root to download the rest of the needed
 dependencies.
 
-For CSS, the [Foundation framework][] is used, which included the use of 
+For CSS, the [Foundation framework][] is used, which included the use of
 [Sass][] and [Compass][]. All JavaScript plugins are removed, though.
 
 
@@ -34,7 +36,7 @@ For CSS, the [Foundation framework][] is used, which included the use of
 [Compass]: http://compass-style.org/
 
 
-# Updating the conference program 
+## Updating the conference program
 
 The program is scraped from a Google Spreadsheet using this command:
 
@@ -43,9 +45,10 @@ The program is scraped from a Google Spreadsheet using this command:
 See `bin/update-schedule.js` for how that works.
 
 
-# TODO
+## TODO
 
 * Offline support
+* AlmondJS
 * Better visualization of workshops, too much repeating now
 * Listen to break point events, and toggle Swipe
 * Handle routing on initial load, jump to current time

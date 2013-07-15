@@ -1,9 +1,12 @@
-/*global define,document*/
+/*jshint browser:true*/
+/*global define,DocumentTouch*/
 define(['program', 'smoothscroll'], function (program, smoothscroll) {
   'use strict';
 
   var _leftMenuToggled = false;
   var menuWidth = '160px';
+  var hasTouch = ('ontouchstart' in window) ||
+      window.DocumentTouch && document instanceof DocumentTouch;
 
   var uiCache = {
     btn: document.getElementById('menu-timeslots-btn'),
@@ -13,6 +16,15 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
     leftMenu: null
   };
 
+  var _onClick = function (el, handler) {
+    var event = hasTouch ? 'touchstart' : 'click';
+    el.addEventListener(event, handler, false);
+  };
+  var _removeClick = function (el, handler) {
+    var event = hasTouch ? 'touchstart' : 'click';
+    el.removeEventListener(event, handler, false);
+  };
+
   var buildMenu = function () {
     var nav = document.createElement('nav');
     nav.className = 'menu-push';
@@ -20,7 +32,7 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
       var item = document.createElement('a');
       item.href = '#slot-' + slot.id;
       item.textContent = slot.str;
-      item.onclick = smoothscroll.toHref;
+      _onClick(item, smoothscroll.toHref);
       nav.appendChild(item);
     });
     return nav;
@@ -28,10 +40,9 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
 
   var toggleMainContentClickHandler = function (enable) {
     if (enable) {
-      uiCache.talks.onclick = toggleMenu;
-    }
-    else {
-      uiCache.talks.onclick = null;
+      _onClick(uiCache.talks, toggleMenu);
+    } else {
+      _removeClick(uiCache.talks, toggleMenu);
     }
   };
 
@@ -57,7 +68,7 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
   };
 
   var bindGlobalUIEvents = function () {
-    uiCache.btn.onclick = toggleMenu;
+    _onClick(uiCache.btn, toggleMenu);
   };
 
   var init = function () {
