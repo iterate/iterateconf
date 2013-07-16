@@ -165,8 +165,11 @@ body {
 
 // Other stuff
 .colophon {
-    text-align: right;
-    padding-bottom: 20px;
+  text-align: right;
+  padding-bottom: 20px;
+}
+.focused-list {
+  padding-left: emCalc(40px);
 }
 
 @media #{$medium} {

@@ -35,13 +35,15 @@ module.exports = function (grunt) {
         tasks: ['jshint']
       },
       livereload: {
+        options: {
+          livereload: true
+        },
         files: [
           '<%= yeoman.app %>/*.html',
           '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
-        ],
-        tasks: ['livereload']
+        ]
       }
     },
     connect: {
@@ -238,7 +240,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.renameTask('regarde', 'watch');
+  //grunt.renameTask('regarde', 'watch');
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
@@ -248,7 +250,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'compass:server',
-      'livereload-start',
+      //'livereload-start',
       'connect:livereload',
       'open',
       'watch'
