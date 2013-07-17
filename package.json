@@ -47,7 +47,9 @@
     "grunt-text-replace": "~0.3.6",
     "grunt-usemin": "~0.1.12",
     "matchdep": "~0.1.1",
-    "tabletop": "~1.3.2"
+    "tabletop": "~1.3.2",
+    "grunt-notify": "~0.2.4",
+    "cheerio": "~0.12.0"
   },
   "engines": {
     "node": ">=0.8.0"

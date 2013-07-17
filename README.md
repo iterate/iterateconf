@@ -45,7 +45,9 @@ The program is scraped from a Google Spreadsheet using this command:
 See `bin/update-schedule.js` for how that works.
 
 
-## TODO
+## TODO / Ideas
 
+* Short program at the top
 * Better visualization of workshops, too much repeating now
+  - When choosing a workshop, "swipe" the rest of the track as well?
 * Handle routing on initial load, jump to current time

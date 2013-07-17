@@ -135,7 +135,6 @@ body {
   }
   .text-col {
     margin: 1.90476em auto 0;
-    max-width: 310px;
   }
   .workshop {
     text-align: center;
@@ -199,6 +198,9 @@ body {
   }
 }
 @media only screen and (max-width: #{$medium-screen}) {
+  .text-col {
+    max-width: 310px;
+  }
   .top-menu h1 {
     text-align: right;
   }

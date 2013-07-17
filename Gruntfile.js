@@ -89,7 +89,7 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        'update-program.js',
+        'bin/{,*/}*.js',
         '<%= yeoman.app %>/scripts/{,*/}*.js',
         '!<%= yeoman.app %>/scripts/libs/*',
         '!<%= yeoman.app %>/scripts/data/*'
@@ -240,8 +240,6 @@ module.exports = function (grunt) {
     }
   });
 
-  //grunt.renameTask('regarde', 'watch');
-
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
@@ -250,7 +248,6 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'compass:server',
-      //'livereload-start',
       'connect:livereload',
       'open',
       'watch'

@@ -35,7 +35,7 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
     swipeElements = [];
   };
 
-  var _addSwipe = function () {
+  var _addSwipeToParallellTalks = function () {
     if (swipeElements.length) {
       return;
     }
@@ -53,86 +53,10 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
     }
   };
 
-  var _getTalk = function (talkId) {
-    var talk = talks[talkId];
-    var user = talk.username.split('@')[0];
-    talk.beskrivelse = talk.beskrivelse.replace('\n', '<br>');
-    talk.img = 'images/' + user + '.jpg';
-    return talk;
-  };
-
-  var buildTalk = function (talkId, slotId) {
-    var timeslot = program.timeslots[slotId];
-    var talk = _getTalk(talkId);
-    return [
-      '<div class="timeslot" id="slot-' + slotId + '">' + timeslot + '</div>',
-      '<div class="row">',
-      '  <article class="large-12 columns">',
-      '    <h2>' + talk.tittel + '</h2>',
-      '    <div class="byline">' + talk.username + '</div>',
-      '    <p class="text-col">' + talk.beskrivelse + '</p>',
-      '    <figure class="profile">', //
-      '      <img src="' + talk.img + '" />',
-      '    </figure>',
-      '  </article>',
-      '</div>'
-    ].join('\n');
-  };
-
-  var buildParallell = function (talkId1, talkId2, slotId) {
-    var timeslot = program.timeslots[slotId];
-    var buildParallellTalk = function (talk) {
-      var tmpl = [
-        '<div class="large-6 columns">',
-        '  <h2>' + talk.tittel + '</h2>',
-        '  <div class="byline">' + talk.username + '</div>',
-        '  <p class="text-col">' + talk.beskrivelse + '</p>',
-        '  <figure class="profile">',
-        '    <img src="' + talk.img + '" />',
-        '  </figure>',
-        '</div>'
-      ];
-      if (talk.workshop) {
-        var workshopWarning = '<div class="workshop">Behold! A workshop.</div>';
-        tmpl.splice(3, 0, workshopWarning);
-      }
-      return tmpl.join('\n');
-    };
-
-    return [
-      '<div class="timeslot parallell-indicator" id="slot-' + slotId + '">',
-      timeslot + '</div>',
-      '<div class="row parallell-talks">',
-      '  <div class="parallell-wrap">',
-      buildParallellTalk(_getTalk(talkId1)),
-      buildParallellTalk(_getTalk(talkId2)),
-      '  </div>',
-      '</div>'
-    ].join('\n');
-  };
-
-  var addTalk = function (talkTempl) {
-    var el = document.createElement('section');
-    el.className = 'talk';
-    el.innerHTML = talkTempl;
-    uiCache.talks.appendChild(el);
-    return el;
-  };
-
-  var initTalks = function () {
-    program.talksOrder.forEach(function (talksInSlot, i) {
-      if (talksInSlot.length === 1) {
-        addTalk(buildTalk(talksInSlot[0], i));
-        return;
-      }
-      if (talksInSlot.length === 2) {
-        var el = addTalk(buildParallell(talksInSlot[0], talksInSlot[1], i));
-        if (isMobile) {
-          swipeElements.push(_addSwipeToEl(el.childNodes[2]));
-        }
-        return;
-      }
-    });
+  var initSwipe = function () {
+    if (isMobile) {
+      _addSwipeToParallellTalks();
+    }
   };
 
   var addMediaListeners = function () {
@@ -140,13 +64,16 @@ define(['data/talks', 'program', 'swipe'], function (talks, program, Swipe) {
     if (hasMatchMediaSupport) {
       var mq = window.matchMedia(MOBILE_MEDIA_QUERY);
       mq.addListener(function () {
-        _onMediaChange(mq, { entry: _addSwipe, exit: _removeSwipe });
+        _onMediaChange(mq, {
+          entry: _addSwipeToParallellTalks,
+          exit: _removeSwipe
+        });
       });
     }
   };
 
   var init = function () {
-    initTalks();
+    initSwipe();
     addMediaListeners();
   };
 
