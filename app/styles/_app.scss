@@ -5,6 +5,9 @@
 $menu-push-width: 160px;
 $mobile-screen: 480px;
 
+html {
+  background: #006fac;
+}
 body {
   padding-top: 50px;
   background-color: rgb(253, 253, 253);
@@ -197,6 +200,7 @@ body {
     max-width: 750px;
   }
 }
+
 @media only screen and (max-width: #{$medium-screen}) {
   .text-col {
     max-width: 310px;
@@ -218,10 +222,12 @@ body {
     content: '→';
     position: absolute;
     right: emCalc(10px);
+    @include animation(moveleft);
   }
   .parallell-indicator:before {
     content: '←';
     position: absolute;
     left: emCalc(10px);
+    @include animation(moveright);
   }
 }

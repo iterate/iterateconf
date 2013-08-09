@@ -1,0 +1,41 @@
+@mixin animation ($animname) {
+  -webkit-animation: $animname 2s ease infinite;
+     -moz-animation: $animname 2s ease infinite;
+          animation: $animname 2s ease infinite;
+}
+
+@mixin transform ($props...) {
+  -webkit-transform: $props;
+     -moz-transform: $props;
+          transform: $props;
+}
+
+@mixin keyframes($animationName)
+{
+    @-webkit-keyframes $animationName {
+        @content;
+    }
+    @-moz-keyframes $animationName {
+        @content;
+    }
+    @-o-keyframes $animationName {
+        @content;
+    }
+    @keyframes $animationName {
+        @content;
+    }
+}
+
+@include keyframes( moveright ) {
+  50% {
+    @include transform(translate(10px, 0));
+  }
+}
+
+@include keyframes( moveleft ) {
+  50% {
+    @include transform(translate(-10px, 0));
+  }
+}
+
+

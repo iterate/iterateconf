@@ -11,7 +11,7 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
   var uiCache = {
     btn: document.getElementById('menu-timeslots-btn'),
     body: document.body,
-    talks: document.getElementById('talks'),
+    mainContent: document.getElementById('main-content'),
     topMenu: document.getElementById('top-menu'),
     leftMenu: null
   };
@@ -40,22 +40,23 @@ define(['program', 'smoothscroll'], function (program, smoothscroll) {
 
   var toggleMainContentClickHandler = function (enable) {
     if (enable) {
-      _onClick(uiCache.talks, toggleMenu);
+      _onClick(uiCache.mainContent, toggleMenu);
     } else {
-      _removeClick(uiCache.talks, toggleMenu);
+      _removeClick(uiCache.mainContent, toggleMenu);
     }
   };
 
   var toggleMenu = function () {
     if (_leftMenuToggled) {
-      uiCache.leftMenu.style.left = '-' + menuWidth;
-      uiCache.body.style.left = '0px';
-      uiCache.topMenu.style.left = '0px';
+      ['-webkit-', '-moz-', ''].forEach(function (vnd) {
+        uiCache.body.style[vnd + 'transform'] = '';
+      });
       toggleMainContentClickHandler(false);
     } else {
-      uiCache.leftMenu.style.left = '0px';
-      uiCache.body.style.left = menuWidth;
-      uiCache.topMenu.style.left = menuWidth;
+      ['-webkit-', '-moz-', ''].forEach(function (vnd) {
+        var transformCss = 'translate(' + menuWidth + ', 0px)';
+        uiCache.body.style[vnd + 'transform'] = transformCss;
+      });
       toggleMainContentClickHandler(true);
     }
     _leftMenuToggled = !_leftMenuToggled;
