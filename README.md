@@ -35,6 +35,12 @@ For CSS, the [Foundation framework][] is used, which included the use of
 [Sass]: http://sass-lang.com/
 [Compass]: http://compass-style.org/
 
+## Deploy
+
+```shell
+$ git remote add iterate dokku@app.iterate.no:konferanse
+$ git push iterate master
+```
 
 ## Updating the conference program
 
@@ -48,6 +54,7 @@ See `bin/update-schedule.js` for how that works.
 ## TODO / Ideas
 
 * Improve sidebar
+* Use ES6 instead of RJS
 * Short program at the top
 * Better visualization of workshops, too much repeating now
   - When choosing a workshop, "swipe" the rest of the track as well?
