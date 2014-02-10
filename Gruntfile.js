@@ -18,7 +18,7 @@ module.exports = function (grunt) {
   // configurable paths
   var appPaths = {
     app: 'app',
-    dist: 'dist'
+    dist: 'www'
   };
   var cachebust = +(new Date());
 
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
         options: {
           middleware: function (connect) {
             return [
-              mountFolder(connect, 'dist')
+              mountFolder(connect, '<%= appConfig.dist %>')
             ];
           }
         }
@@ -122,14 +122,14 @@ module.exports = function (grunt) {
         options: {
           name: 'main',
           mainConfigFile: 'app/scripts/main.js',
-          out: 'dist/scripts/main.<%= cachebust %>.js',
+          out: '<%= appConfig.dist %>/scripts/main.<%= cachebust %>.js',
           baseUrl: 'app/scripts',
           preserveLicenseComments: false,
           generateSourceMaps: true,
           useStrict: true,
           almond: true,
           replaceRequireScript: [{
-            files: ['dist/index.html'],
+            files: ['<%= appConfig.dist %>/index.html'],
             module: 'main',
             modulePath: 'scripts/main.<%= cachebust %>'
           }],
