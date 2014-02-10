@@ -10,23 +10,15 @@ var RED = '\033[31m';
 var GREEN = '\x1B[32m';
 var RESET = '\033[0m';
 
-var PROGRAM_SPREADSHEET_KEY = '0AruGzswpcVkadGhYVmpCb3lhWE1qUW5fWG1EZWdYOEE';
-var TALKSFILE = 'app/scripts/data/talks.js';
+var PROGRAM_SPREADSHEET_KEY = '0ApxuzZeYd8qddEpXVkFaVng1MHFmSFdyaXVabzQyaUE';
 var TALKSHTML = 'app/index.html';
 var TALKSID = '#talks';
 
 var clean = function (data) {
-  var cleanData = [];
-  data.forEach(function (talk) {
-    var t = talk;
-    t.beskrivelse = t.beskrivelsepm + t.beskrivelsedev;
-    t.beskrivelse = t.beskrivelse.replace('\n', '<br/>');
-    t.workshop = (t.workshop === '1' ? true : false);
-    delete t.beskrivelsedev;
-    delete t.beskrivelsepm;
-    cleanData.push(t);
+  return data.map(function (talk) {
+    talk.workshop = talk.workshop === '1' ? true : false;
+    return talk;
   });
-  return cleanData;
 };
 
 var _getTalk = function (talkId, talks) {
@@ -134,6 +126,7 @@ var writeHTML = function (talksHtml, filename, htmlId) {
 var onDataDownloaded = function (data, tabletop) {
   var cleanData = clean(data);
   console.log('Found ' + cleanData.length + ' talks in spreadsheet…');
+  //console.log(JSON.stringify(cleanData));
   writeHTML(genereateHtml(cleanData), TALKSHTML, TALKSID);
 };
 

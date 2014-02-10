@@ -47,6 +47,7 @@ See `bin/update-schedule.js` for how that works.
 
 ## TODO / Ideas
 
+* Improve sidebar
 * Short program at the top
 * Better visualization of workshops, too much repeating now
   - When choosing a workshop, "swipe" the rest of the track as well?
