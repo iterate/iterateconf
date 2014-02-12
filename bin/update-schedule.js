@@ -13,6 +13,7 @@ var RESET = '\033[0m';
 var PROGRAM_SPREADSHEET_KEY = '0ApxuzZeYd8qddEpXVkFaVng1MHFmSFdyaXVabzQyaUE';
 var TALKSHTML = 'app/index.html';
 var TALKSID = '#talks';
+var MINISCHEDULEID = '#mini-schedule';
 
 var clean = function (data) {
   return data.map(function (talk) {
@@ -64,7 +65,8 @@ var buildParallell = function (talkId1, talkId2, slotId, data) {
     ];
     if (talk.workshop) {
       var workshopWarning = '    ';
-      workshopWarning += '<div class="workshop">* This is a workshop. *</div>';
+      workshopWarning += '<div class="workshop">';
+      workshopWarning += '<em>~ This is a workshop ~</em></div>';
       tmpl.splice(3, 0, workshopWarning);
     }
     return tmpl.join('\n');
@@ -90,7 +92,34 @@ var addTalk = function (talkTempl) {
 };
 
 
-var genereateHtml = function (data) {
+var generateMiniSchedule = function (data) {
+  var html = '\n';
+  program.talksOrder.forEach(function (talksInSlot, i) {
+    var track1 = _getTalk(talksInSlot[0], data);
+    var track2 = _getTalk(talksInSlot[1], data);
+    var startTime = program.timeslots[i].split(' - ')[0];
+
+    html += '<a href="#slot-' + i + '">';
+    html += '<div class="row mini-schedule-row">\n';
+
+    html += '<div class="large-5 columns text-right"><p>';
+    html += track1.tittel;
+    html += '</p></div>\n';
+
+    html += '<div class="large-2 columns text-center"><h4>';
+    html += startTime;
+    html += '</h4></div>\n';
+
+    html += '<div class="large-5 columns text-left"><p>';
+    html += track2.tittel;
+    html += '</p></div>\n';
+
+    html += '</div></a>\n';
+  });
+  html += '\n';
+  return html;
+};
+var generateMainSchedule = function (data) {
   var html = '';
   var numberOfTalks = 0;
   program.talksOrder.forEach(function (talksInSlot, i) {
@@ -106,18 +135,21 @@ var genereateHtml = function (data) {
   });
   html += '\n';
 
-  console.log(numberOfTalks + ' talks in schedule…');
+  console.log('Found ' + numberOfTalks + ' talks in schedule…');
   return html;
 };
 
-var writeHTML = function (talksHtml, filename, htmlId) {
+var writeHTML = function (filename, injects) {
   var html = fs.readFile(filename, function (err, data) {
     if (err) { throw err; }
     var $ = cheerio.load(data);
-    $(htmlId).html(talksHtml);
+    injects.forEach(function (injectObj) {
+      $(injectObj.id).html(injectObj.html);
+    });
     fs.writeFile(filename, $.html(), function (err) {
       if (err) { throw err; }
-      console.log(GREEN + 'Talks successfully injected → ' + filename + RESET);
+      console.log(GREEN + 'Talks successfully injected → ' +
+                  filename + RESET);
     });
 
   });
@@ -127,7 +159,10 @@ var onDataDownloaded = function (data, tabletop) {
   var cleanData = clean(data);
   console.log('Found ' + cleanData.length + ' talks in spreadsheet…');
   //console.log(JSON.stringify(cleanData));
-  writeHTML(genereateHtml(cleanData), TALKSHTML, TALKSID);
+  writeHTML(TALKSHTML, [
+    { html: generateMainSchedule(cleanData), id: TALKSID },
+    { html: generateMiniSchedule(cleanData), id: MINISCHEDULEID }
+  ]);
 };
 
 

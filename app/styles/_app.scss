@@ -47,6 +47,7 @@ body {
 }
 // Left push menu
 .menu-push {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -105,6 +106,17 @@ body {
   }
 }
 
+.mini-schedule-header {
+  border-bottom: 2px solid #222;
+}
+.mini-schedule-row {
+  border-bottom: 1px solid #ccc;
+  p {
+    margin-top: 0.2em;
+    margin-bottom: 1em;
+  }
+}
+
 // Rules for the talks
 .talk {
   position: relative;
@@ -128,7 +140,8 @@ body {
     text-align: center;
     margin-top: emCalc(10px);
     padding: emCalc(10px);
-    background: #00ac3d;
+    background: #006fac;
+    color: #fff;
   }
 }
 
@@ -159,20 +172,22 @@ body {
   padding-left: emCalc(40px);
 }
 
-.only-mobile {
-  display: none;
-}
-
 @media #{$medium} {
-  .menu-push-item {
-    left: 60px;
-  }
   .text-col {
     max-width: 35em;
   }
 }
 
 @media only screen and (max-width: #{$small-screen}) {
+  // Yes, your eyes does not fool you.
+  .mini-schedule-row {
+    .text-right {
+      text-align: left !important;
+    }
+    .text-left {
+      text-align: right !important;
+    }
+  }
   .parallell-talks {
     max-width: 770px;
   }
@@ -197,29 +212,11 @@ body {
   .top-menu h1 {
     text-align: right;
   }
-  .only-mobile {
-    display: inline;
-  }
   .menu-timeslots-btn {
     display: inline;
   }
   .menu-push {
+    display: block;
     left: -$menu-push-width;
-  }
-  .parallell-talks {
-    overflow: hidden;
-    position: relative;
-  }
-  .parallell-indicator:after {
-    content: '→';
-    position: absolute;
-    right: emCalc(10px);
-    @include animation(moveleft);
-  }
-  .parallell-indicator:before {
-    content: '←';
-    position: absolute;
-    left: emCalc(10px);
-    @include animation(moveright);
   }
 }

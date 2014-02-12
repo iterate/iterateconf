@@ -1,13 +1,11 @@
 /*global require*/
 require.config({
   paths: {
-    jquery: 'libs/jquery',
-    swipe: 'libs/swipe'
+    jquery: 'libs/jquery'
   }
 });
 
-require(['schedule', 'menu'], function (schedule, menu) {
+require(['menu'], function (menu) {
   'use strict';
-  schedule.init();
   menu.init();
 });
