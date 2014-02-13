@@ -15,8 +15,8 @@ The serif Georgia should be used for all main text content.
 
 ## Dependencies and developing
 
-Client side, this project is using [VanillaJS][]. Well, except for a bit of
-[Require.JS][].
+Client side, this project is using [VanillaJS][], with some transpiling to get
+the latest and greatest from ES6.
 
 [Grunt][] is used to build the app and has alot of other utilities built in as
 well. It can be installed by doing `npm install -g grunt-cli`.
@@ -29,7 +29,6 @@ For CSS, the [Foundation framework][] is used, which included the use of
 
 
 [VanillaJS]: http://vanilla-js.com/
-[Require.JS]: http://requirejs.org/
 [Grunt]: http://gruntjs.com/
 [Foundation framework]: http://foundation.zurb.com/
 [Sass]: http://sass-lang.com/

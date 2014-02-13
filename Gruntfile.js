@@ -15,6 +15,8 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  grunt.loadTasks('./tasks');
+
   // configurable paths
   var appPaths = {
     app: 'app',
@@ -30,6 +32,10 @@ module.exports = function (grunt) {
         files: ['<%= appConfig.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass']
       },
+      jstranspile: {
+        files: ['<%= appConfig.app %>/scripts/{,*/}*.js'],
+        tasks: ['jstranspile']
+      },
       jshint: {
         files: '<%= jshint.all %>',
         tasks: ['jshint']
@@ -44,6 +50,45 @@ module.exports = function (grunt) {
           '{.tmp,<%= appConfig.app %>}/scripts/{,*/}*.js',
           '<%= appConfig.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
         ]
+      }
+    },
+    transpile: {
+      main: {
+        type: 'amd',
+        files: [{
+          expand: true,
+          cwd: '<%= appConfig.app %>/scripts/',
+          src: ['**/*.js'],
+          dest: '.tmp/amdscripts/',
+          ext: '.amd.js'
+        }]
+      }
+    },
+    concat: {
+      amd: {
+        src: '.tmp/amdscripts/**/*.amd.js',
+        dest: '.tmp/iterateconf.amd.js'
+      }
+    },
+    wrapamd: {
+      dist: {
+        src: [
+          '<%= appConfig.app %>/scripts/vendor/loader.js',
+          '<%= concat.amd.dest %>'
+        ],
+        dest: '.tmp/scripts/iterateconf.js',
+        options: {
+          barename: 'main',
+          namespace: 'IterateConf'
+        }
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          '<%= appConfig.dist %>/scripts/iterateconf.js': [
+            '<%= wrapamd.dist.dest %>']
+        }
       }
     },
     connect: {
@@ -91,8 +136,7 @@ module.exports = function (grunt) {
         'Gruntfile.js',
         'bin/{,*/}*.js',
         '<%= appConfig.app %>/scripts/{,*/}*.js',
-        '!<%= appConfig.app %>/scripts/libs/*',
-        '!<%= appConfig.app %>/scripts/data/*'
+        '!<%= appConfig.app %>/scripts/vendor/*'
       ]
     },
     compass: {
@@ -108,34 +152,6 @@ module.exports = function (grunt) {
       server: {
         options: {
           debugInfo: true
-        }
-      }
-    },
-    // requirejs does concat
-    /*concat: {
-      dist: {}
-    },*/
-    requirejs: {
-      dist: {
-        // Options:
-        // https://github.com/jrburke/r.js/blob/master/build/example.build.js
-        options: {
-          name: 'main',
-          mainConfigFile: 'app/scripts/main.js',
-          out: '<%= appConfig.dist %>/scripts/main.<%= cachebust %>.js',
-          baseUrl: 'app/scripts',
-          preserveLicenseComments: false,
-          generateSourceMaps: true,
-          useStrict: true,
-          almond: true,
-          replaceRequireScript: [{
-            files: ['<%= appConfig.dist %>/index.html'],
-            module: 'main',
-            modulePath: 'scripts/main.<%= cachebust %>'
-          }],
-          optimize: 'uglify2',
-          wrap: true
-          //uglify2: {} // https://github.com/mishoo/UglifyJS2
         }
       }
     },
@@ -238,7 +254,14 @@ module.exports = function (grunt) {
         }]
       }
     }
+
   });
+
+  grunt.registerTask('transpilejs', [
+    'transpile',
+    'concat',
+    'wrapamd'
+  ]);
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
@@ -247,6 +270,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'transpilejs',
       'compass:server',
       'connect:livereload',
       'open',
@@ -259,18 +283,16 @@ module.exports = function (grunt) {
     'clean:dist',
     'compass:dist',
     'useminPrepare',
-    'concat',
+    'transpilejs',
+    'uglify',
     'htmlmin:dist',
     'cssmin',
     'copy',
     'usemin',
     'htmlmin:deploy',
-    'requirejs',
     'replace',
     'manifest'
   ]);
 
-  grunt.registerTask('default', [
-    'build'
-  ]);
+  grunt.registerTask('default', [ 'build' ]);
 };

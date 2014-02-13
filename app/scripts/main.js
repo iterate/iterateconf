@@ -1,11 +1,3 @@
-/*global require*/
-require.config({
-  paths: {
-    jquery: 'libs/jquery'
-  }
-});
+import { init } from 'menu';
 
-require(['menu'], function (menu) {
-  'use strict';
-  menu.init();
-});
+init();
