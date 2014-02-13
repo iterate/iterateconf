@@ -1,4 +1,5 @@
 {
+  "esnext": true,
   "camelcase": true,
   "indent": 2,
   "undef": true,

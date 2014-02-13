@@ -87,7 +87,8 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= appConfig.dist %>/scripts/iterateconf.js': [
-            '<%= wrapamd.dist.dest %>']
+            '<%= wrapamd.dist.dest %>'
+          ]
         }
       }
     },
@@ -135,6 +136,7 @@ module.exports = function (grunt) {
       all: [
         'Gruntfile.js',
         'bin/{,*/}*.js',
+        'tasks/{,*/}*.js',
         '<%= appConfig.app %>/scripts/{,*/}*.js',
         '!<%= appConfig.app %>/scripts/vendor/*'
       ]
