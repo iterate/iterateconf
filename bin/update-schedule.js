@@ -102,15 +102,15 @@ var generateMiniSchedule = function (data) {
     html += '<a href="#slot-' + i + '">';
     html += '<div class="row mini-schedule-row">\n';
 
-    html += '<div class="large-5 columns text-right"><p>';
+    html += '<div class="small-5 columns text-right"><p>';
     html += track1.tittel;
     html += '</p></div>\n';
 
-    html += '<div class="large-2 columns text-center"><h4>';
+    html += '<div class="small-2 columns text-center"><h4>';
     html += startTime;
     html += '</h4></div>\n';
 
-    html += '<div class="large-5 columns text-left"><p>';
+    html += '<div class="small-5 columns text-left"><p>';
     html += track2.tittel;
     html += '</p></div>\n';
 
