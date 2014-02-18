@@ -21,6 +21,10 @@ var getYPosOfEl = function (id) {
   return y;
 };
 
+var uiCache = {
+  main: document.getElementById('main-content')
+};
+
 var smoothScroll = function (eID) {
   var i;
   var startY = getCurrentYPos();
@@ -41,7 +45,9 @@ var smoothScroll = function (eID) {
   var timer = 0;
   if (stopY > startY) {
     for (i = startY; i < stopY; i += step) {
-      setTimeout('window.scrollTo(0, '+leapY+')', timer * speed);
+      setTimeout(function () {
+        uiCache.main.scrollTop = leapY;
+      }, timer * speed);
       leapY += step;
       if (leapY > stopY) {
         leapY = stopY;
@@ -51,7 +57,9 @@ var smoothScroll = function (eID) {
     return;
   }
   for (i = startY; i > stopY; i -= step) {
-    setTimeout('window.scrollTo(0, '+leapY+')', timer * speed);
+    setTimeout(function () {
+      uiCache.main.scrollTop = leapY;
+    }, timer * speed);
     leapY -= step;
     if (leapY < stopY) {
       leapY = stopY;

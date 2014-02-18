@@ -32,9 +32,9 @@ module.exports = function (grunt) {
         files: ['<%= appConfig.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass']
       },
-      jstranspile: {
-        files: ['<%= appConfig.app %>/scripts/{,*/}*.js'],
-        tasks: ['jstranspile']
+      plunk: {
+        files: ['<%= appConfig.app %>/scripts/**/*.js'],
+        tasks: ['transpilejs']
       },
       jshint: {
         files: '<%= jshint.all %>',

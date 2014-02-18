@@ -11,9 +11,8 @@ var hasTouch = ('ontouchstart' in window) ||
 
 var uiCache = {
   btn: document.getElementById('menu-timeslots-btn'),
-  body: document.body,
-  mainContent: document.getElementById('main-content'),
-  topMenu: document.getElementById('top-menu'),
+  body: document.getElementById('viewport'),
+  mainContent: document.getElementById('main'),
   leftMenu: null
 };
 
@@ -47,16 +46,19 @@ var toggleMainContentClickHandler = function (enable) {
   }
 };
 
-var toggleMenu = function () {
+var toggleMenu = function (event) {
+  event.stopImmediatePropagation();
+  event.preventDefault();
+
   if (_leftMenuToggled) {
     ['-webkit-', '-moz-', ''].forEach(function (vnd) {
-      uiCache.body.style[vnd + 'transform'] = '';
+      uiCache.mainContent.style[vnd + 'transform'] = '';
     });
     toggleMainContentClickHandler(false);
   } else {
+    var transformCss = 'translate3d(' + menuWidth + ', 0px, 0px)';
     ['-webkit-', '-moz-', ''].forEach(function (vnd) {
-      var transformCss = 'translate(' + menuWidth + ', 0px)';
-      uiCache.body.style[vnd + 'transform'] = transformCss;
+      uiCache.mainContent.style[vnd + 'transform'] = transformCss;
     });
     toggleMainContentClickHandler(true);
   }

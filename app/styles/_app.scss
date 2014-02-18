@@ -6,21 +6,60 @@ $menu-push-width: 160px;
 $mobile-screen: 480px;
 
 html {
-  background: #006fac;
+  padding: 0;
+  margin: 0;
 }
 body {
-  padding-top: 50px;
-  background-color: rgb(253, 253, 253);
-  color: #111;
-  position: relative;
+  padding: 0;
+  margin: 0;
+  position: initial;
+}
+
+#viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+#main {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 100%;
+  overflow: hidden;
+
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+     -moz-transition: -moz-transform .2s ease-in-out;
+          transition: transform .2s ease-in-out;
+  -webkit-transform: translate3d(0,0,0);
+          transform: translate3d(0,0,0);
+  
+  -webkit-tap-highlight-color: transparent;
+}
+#main-content {
+  position: absolute;
+  top: 45px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  overflow: auto;
+  overflow-x: hidden;
+  background: #fff;
+  padding-top: 10px;
+
+  -webkit-overflow-scrolling: touch;
 }
 
 // The top sticky menu
-.top-menu {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 99;
+#top-menu {
+  z-index: 2;
+  position: relative;
 
   width: 100%;
   height: 45px;
@@ -45,17 +84,12 @@ body {
     color: #fff;
   }
 }
-// Left push menu
 .menu-push {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
   width: $menu-push-width;
   height: 100%;
-  z-index: 100;
 
-  overflow-y: auto;
+  overflow-x: hidden;
 
   padding-top: 45px;
 
@@ -73,19 +107,10 @@ body {
     }
   }
 }
-// Common class for items to be "pushed" to the side
-.menu-push-item {
-  overflow-x: hidden;
-  left: 0;
-  -webkit-transition: all 0.3s ease;
-     -moz-transition: all 0.3s ease;
-          transition: all 0.3s ease;
-}
 
 // The button to toggle the left menu on small devices
 .menu-timeslots-btn {
-  // Default to not show
-  display: none;
+  display: inline;
   
   float: left;
   height: 45px;
@@ -110,10 +135,12 @@ body {
   border-bottom: 2px solid #222;
 }
 .mini-schedule-row {
+  padding-top: 10px;
   border-bottom: 1px solid #ccc;
   p {
     margin-top: 0.2em;
     margin-bottom: 1em;
+    word-break: break-word;
   }
 }
 
@@ -212,12 +239,5 @@ body {
   }
   .top-menu h1 {
     text-align: right;
-  }
-  .menu-timeslots-btn {
-    display: inline;
-  }
-  .menu-push {
-    display: block;
-    left: -$menu-push-width;
   }
 }
