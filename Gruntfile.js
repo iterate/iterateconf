@@ -32,13 +32,9 @@ module.exports = function (grunt) {
         files: ['<%= appConfig.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass']
       },
-      plunk: {
+      scripts: {
         files: ['<%= appConfig.app %>/scripts/**/*.js'],
-        tasks: ['transpilejs']
-      },
-      jshint: {
-        files: '<%= jshint.all %>',
-        tasks: ['jshint']
+        tasks: ['jshint', 'transpilejs']
       },
       livereload: {
         options: {
@@ -47,7 +43,7 @@ module.exports = function (grunt) {
         files: [
           '<%= appConfig.app %>/*.html',
           '{.tmp,<%= appConfig.app %>}/styles/{,*/}*.css',
-          '{.tmp,<%= appConfig.app %>}/scripts/{,*/}*.js',
+          '.tmp/scripts/{,*/}*.js',
           '<%= appConfig.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
         ]
       }

@@ -1,13 +1,8 @@
 /*jshint browser:true*/
-/*global define,self*/
 // http://www.itnewb.com/tutorial/
 //  Creating-the-Smooth-Scroll-Effect-with-JavaScript
 // Include the height of the pre-header element
 var offsetAbove = 50;
-
-var getCurrentYPos = function () {
-  return self.pageYOffset;
-};
 
 var getYPosOfEl = function (id) {
   var el = document.getElementById(id);
@@ -21,33 +16,28 @@ var getYPosOfEl = function (id) {
   return y;
 };
 
-var uiCache = {
-  main: document.getElementById('main-content')
-};
-
 var smoothScroll = function (eID) {
   var i;
-  var startY = getCurrentYPos();
+  var startY = getYPosOfEl('main-content');
   var stopY = getYPosOfEl(eID);
   stopY -= offsetAbove;
 
   var distance = stopY > startY ? stopY - startY : startY - stopY;
   if (distance < 100) {
-    scrollTo(0, stopY);
+    document.getElementById('main-content').scrollTop = stopY;
     return;
   }
   var speed = Math.round(distance / 90);
-  if (speed >= 20) {
-    speed = 20;
+  if (speed >= 40) {
+    speed = 40;
   }
   var step = Math.round(distance / 25);
   var leapY = stopY > startY ? startY + step : startY - step;
   var timer = 0;
   if (stopY > startY) {
     for (i = startY; i < stopY; i += step) {
-      setTimeout(function () {
-        uiCache.main.scrollTop = leapY;
-      }, timer * speed);
+      setTimeout('document.getElementById("main-content").scrollTop = '+leapY,
+                 timer * speed);
       leapY += step;
       if (leapY > stopY) {
         leapY = stopY;
@@ -57,9 +47,8 @@ var smoothScroll = function (eID) {
     return;
   }
   for (i = startY; i > stopY; i -= step) {
-    setTimeout(function () {
-      uiCache.main.scrollTop = leapY;
-    }, timer * speed);
+    setTimeout('document.getElementById("main-content").scrollTop = '+leapY,
+               timer * speed);
     leapY -= step;
     if (leapY < stopY) {
       leapY = stopY;

@@ -8,8 +8,7 @@ var roughTimeslots = [
   { str: '13:30 - 14:00', id: 10 },
   { str: '14:00 - 14:30', id: 11 },
   { str: '14:30 - 15:00', id: 12 },
-  { str: '15:15 - 16:15', id: 13 },
-  { str: '16:30 - 17:00', id: 19 }
+  { str: '15:15 - 16:15', id: 13 }
 ];
 
 export { roughTimeslots };

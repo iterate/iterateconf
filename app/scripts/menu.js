@@ -11,7 +11,7 @@ var hasTouch = ('ontouchstart' in window) ||
 
 var uiCache = {
   btn: document.getElementById('menu-timeslots-btn'),
-  body: document.getElementById('viewport'),
+  body: document.body,
   mainContent: document.getElementById('main'),
   leftMenu: null
 };
