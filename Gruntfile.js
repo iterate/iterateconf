@@ -28,10 +28,6 @@ module.exports = function (grunt) {
     appConfig: appPaths,
     cachebust: cachebust,
     watch: {
-      compass: {
-        files: ['<%= appConfig.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass']
-      },
       scripts: {
         files: ['<%= appConfig.app %>/scripts/**/*.js'],
         tasks: ['jshint', 'transpilejs']
@@ -136,22 +132,6 @@ module.exports = function (grunt) {
         '<%= appConfig.app %>/scripts/{,*/}*.js',
         '!<%= appConfig.app %>/scripts/vendor/*'
       ]
-    },
-    compass: {
-      options: {
-        cssDir: '.tmp/styles',
-        sassDir: '<%= appConfig.app %>/styles',
-        imagesDir: '<%= appConfig.app %>/images',
-        javascriptsDir: '.tmp/scripts',
-        relativeAssets: true,
-        force: true
-      },
-      dist: {},
-      server: {
-        options: {
-          debugInfo: true
-        }
-      }
     },
     useminPrepare: {
       html: '<%= appConfig.app %>/index.html',
@@ -269,7 +249,6 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'transpilejs',
-      'compass:server',
       'connect:livereload',
       'open',
       'watch'
@@ -279,7 +258,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'jshint',
     'clean:dist',
-    'compass:dist',
     'useminPrepare',
     'transpilejs',
     'uglify',
