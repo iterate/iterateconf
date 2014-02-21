@@ -1,7 +1,6 @@
 /*jshint browser:true*/
 /*global DocumentTouch*/
 
-import { toHref } from 'smoothscroll';
 import { roughTimeslots } from 'program';
 
 var _leftMenuToggled = false;
@@ -32,7 +31,6 @@ var buildMenu = function () {
     var item = document.createElement('a');
     item.href = '#slot-' + slot.id;
     item.textContent = slot.str;
-    _onClick(item, toHref);
     nav.appendChild(item);
   });
   return nav;
