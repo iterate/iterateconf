@@ -132,18 +132,17 @@ var generateMiniSchedule = function (data) {
     html += startTime;
     html += '</h4></div>\n';
 
+    html += '<div class="small-5 columns text-left"><p>';
     switch (talksInSlot.length) {
       case 0:
         html += 'Pause';
-        html += '</p></div>\n';
         break;
       case 2:
         var track2 = _getTalk(talksInSlot[1], data);
-        html += '<div class="small-5 columns text-left"><p>';
         html += track2.tittel;
-        html += '</p></div>\n';
         break;
     }
+    html += '</p></div>\n';
 
     html += '</div></a>\n';
   });
