@@ -163,7 +163,10 @@ var generateMainSchedule = function (data) {
         numberOfTalks += 1;
         break;
       case 2:
-        html += addTalk(buildParallell(talksInSlot[0], talksInSlot[1], i, data));
+        html += addTalk(buildParallell(talksInSlot[0],
+                                       talksInSlot[1],
+                                       i,
+                                       data));
         numberOfTalks += 2;
         break;
     }

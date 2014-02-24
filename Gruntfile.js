@@ -149,7 +149,7 @@ module.exports = function (grunt) {
     cssmin: {
       dist: {
         files: {
-          '<%= appConfig.dist %>/styles/index.<%= cachebust %>.css': [
+          '<%= appConfig.dist %>/styles/index.css': [
             '.tmp/styles/{,*/}*.css',
             '<%= appConfig.app %>/styles/{,*/}*.css'
           ]
