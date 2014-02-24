@@ -25,8 +25,9 @@ var timeslots = [
 var talksOrder = [
   [21, 6],
   [8, 37],
-  [20, 13],
+  [17, 13],
   [22, 29],
+  [],
   [25, 19],
   [31, 24],
   [1, 33],
@@ -39,7 +40,7 @@ var talksOrder = [
   [12, 18],
   [35, 4],
   [15, 23],
-  [17, 5]
+  [5]
 ];
 
 exports.timeslots = timeslots;

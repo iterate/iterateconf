@@ -84,6 +84,20 @@ var buildParallell = function (talkId1, talkId2, slotId, data) {
   ].join('\n');
 };
 
+var addBreak = function (slotId) {
+  var timeslot = program.timeslots[slotId];
+  return [
+    '<section class="talk">',
+    '  <div class="timeslot" id="slot-' + slotId + '">' + timeslot + '</div>',
+    '  <div class="row">',
+    '    <article class="large-12 columns">',
+    '      <h2>Pause</h2>',
+    '    </article>',
+    '  </div>',
+    '</section>'
+  ].join('\n');
+};
+
 var addTalk = function (talkTempl) {
   var el = '<section class="talk">\n';
   el += talkTempl;
@@ -95,24 +109,41 @@ var addTalk = function (talkTempl) {
 var generateMiniSchedule = function (data) {
   var html = '\n';
   program.talksOrder.forEach(function (talksInSlot, i) {
-    var track1 = _getTalk(talksInSlot[0], data);
-    var track2 = _getTalk(talksInSlot[1], data);
     var startTime = program.timeslots[i].split(' - ')[0];
 
     html += '<a href="#slot-' + i + '">';
     html += '<div class="row mini-schedule-row">\n';
 
     html += '<div class="small-5 columns text-right"><p>';
-    html += track1.tittel;
-    html += '</p></div>\n';
+    switch (talksInSlot.length) {
+      case 0:
+        html += 'Pause';
+        html += '</p></div>\n';
+        break;
+      case 1:
+      case 2:
+        var track1 = _getTalk(talksInSlot[0], data);
+        html += track1.tittel;
+        html += '</p></div>\n';
+        break;
+    }
 
     html += '<div class="small-2 columns text-center"><h4>';
     html += startTime;
     html += '</h4></div>\n';
 
-    html += '<div class="small-5 columns text-left"><p>';
-    html += track2.tittel;
-    html += '</p></div>\n';
+    switch (talksInSlot.length) {
+      case 0:
+        html += 'Pause';
+        html += '</p></div>\n';
+        break;
+      case 2:
+        var track2 = _getTalk(talksInSlot[1], data);
+        html += '<div class="small-5 columns text-left"><p>';
+        html += track2.tittel;
+        html += '</p></div>\n';
+        break;
+    }
 
     html += '</div></a>\n';
   });
@@ -124,13 +155,18 @@ var generateMainSchedule = function (data) {
   var numberOfTalks = 0;
   program.talksOrder.forEach(function (talksInSlot, i) {
     html += '\n';
-    if (talksInSlot.length === 1) {
-      html += addTalk(buildTalk(talksInSlot[0], i, data));
-      numberOfTalks += 1;
-    }
-    if (talksInSlot.length === 2) {
-      html += addTalk(buildParallell(talksInSlot[0], talksInSlot[1], i, data));
-      numberOfTalks += 2;
+    switch (talksInSlot.length) {
+      case 0:
+        html += addBreak(i);
+        break;
+      case 1:
+        html += addTalk(buildTalk(talksInSlot[0], i, data));
+        numberOfTalks += 1;
+        break;
+      case 2:
+        html += addTalk(buildParallell(talksInSlot[0], talksInSlot[1], i, data));
+        numberOfTalks += 2;
+        break;
     }
   });
   html += '\n';
@@ -158,7 +194,6 @@ var writeHTML = function (filename, injects) {
 var onDataDownloaded = function (data, tabletop) {
   var cleanData = clean(data);
   console.log('Found ' + cleanData.length + ' talks in spreadsheet…');
-  //console.log(JSON.stringify(cleanData));
   writeHTML(TALKSHTML, [
     { html: generateMainSchedule(cleanData), id: TALKSID },
     { html: generateMiniSchedule(cleanData), id: MINISCHEDULEID }
