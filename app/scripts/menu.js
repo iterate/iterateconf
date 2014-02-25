@@ -7,6 +7,7 @@ var _leftMenuToggled = false;
 var menuWidth = '160px';
 var hasTouch = ('ontouchstart' in window) ||
     window.DocumentTouch && document instanceof DocumentTouch;
+var tapEvent = hasTouch ? 'touchstart' : 'click';
 
 var uiCache = {
   btn: document.getElementById('menu-timeslots-btn'),
@@ -15,16 +16,14 @@ var uiCache = {
   leftMenu: null
 };
 
-var _onClick = function (el, handler) {
-  var event = hasTouch ? 'touchstart' : 'click';
-  el.addEventListener(event, handler, false);
+var _onClick = function(el, handler) {
+  el.addEventListener(tapEvent, handler, false);
 };
-var _removeClick = function (el, handler) {
-  var event = hasTouch ? 'touchstart' : 'click';
-  el.removeEventListener(event, handler, false);
+var _removeClick = function(el, handler) {
+  el.removeEventListener(tapEvent, handler, false);
 };
 
-var buildMenu = function () {
+var buildMenu = function() {
   var nav = document.createElement('nav');
   nav.className = 'menu-push';
   roughTimeslots.forEach(function (slot) {
@@ -36,7 +35,7 @@ var buildMenu = function () {
   return nav;
 };
 
-var toggleMainContentClickHandler = function (enable) {
+var toggleMainContentClickHandler = function(enable) {
   if (enable) {
     _onClick(uiCache.mainContent, toggleMenu);
   } else {
@@ -44,7 +43,7 @@ var toggleMainContentClickHandler = function (enable) {
   }
 };
 
-var toggleMenu = function (event) {
+var toggleMenu = function(event) {
   event.stopImmediatePropagation();
   event.preventDefault();
 
@@ -63,19 +62,15 @@ var toggleMenu = function (event) {
   _leftMenuToggled = !_leftMenuToggled;
 };
 
-var addSideMenu = function () {
+var addSideMenu = function() {
   var nav = buildMenu();
   uiCache.body.appendChild(nav);
   uiCache.leftMenu = nav;
 };
 
-var bindGlobalUIEvents = function () {
+var bindMenuToggleBtn = function() {
   _onClick(uiCache.btn, toggleMenu);
 };
 
-var init = function () {
-  addSideMenu();
-  bindGlobalUIEvents();
-};
-
-export { init };
+addSideMenu();
+bindMenuToggleBtn();
