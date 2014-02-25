@@ -4,6 +4,7 @@
  / http://www.colorhexa.com/006fac
  */
 
+/** Generic styles **/
 html {
   padding: 0;
   margin: 0;
@@ -11,20 +12,6 @@ html {
 }
 body {
   font-family: Georgia,serif;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-
-  margin: 0;
-  padding: 0;
-}
-div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
-  margin: 0;
-  padding: 0;
 }
 h1,h2,h3,h4,h5,h6{
   font-family:"Droid Serif",georgia,serif;
@@ -36,11 +23,6 @@ h1,h2,h3,h4,h5,h6{
   margin-bottom:.5em;
   line-height:1.2125em
 }
-p {
-  line-height: 1.6;
-  margin-bottom: 1.25em;
-  text-rendering: optimizeLegibility;
-}
 a {
   color: #2ba6cb;
   text-decoration: none;
@@ -49,29 +31,33 @@ a {
 a:hover, a:focus {
   color: #2795b6;
 }
-ul, ol, dl {
-  line-height: 1.6;
-  margin-bottom: 1.25em;
-  list-style-position: outside;
+
+/** Common components **/
+.text-col {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40em;
 }
-.inline-list {
-  margin: 0 auto 1.0625em;
-  margin-left: -1.375em;
-  margin-right: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
+.colophon {
+  text-align: right;
+  padding-bottom: 20px;
 }
-.inline-list>li {
-  list-style: none;
-  float: left;
-  margin-left: 1.375em;
-  display: block;
-}
-.inline-list>li>* {
-  display: block;
+.focused-list {
+  padding-left: 2.5em;
 }
 
+/** left-menu, heading and main content setup**/
+.viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+  margin: 0;
+  padding: 0;
+}
 #main {
   position: absolute;
   left: 0;
@@ -114,7 +100,6 @@ ul, ol, dl {
   background: #006fac;
   box-shadow: 0px 2px 10px rgba(0,0,0,0.7);
 }
-
 #top-menu h1 {
   margin: 0;
   height: 45px;
@@ -128,6 +113,8 @@ ul, ol, dl {
   color: #fff;
   text-decoration: none;
 }
+
+/** Left push menu **/
 .menu-push {
   position: absolute;
   width: 160px;
@@ -149,7 +136,7 @@ ul, ol, dl {
   font-style: italic;
 }
 
-/** The button to toggle the left menu on small devices **/
+/** The button to toggle the left menu **/
 .menu-timeslots-btn {
   display: inline;
 
@@ -163,7 +150,6 @@ ul, ol, dl {
   padding: 0 20px;
   cursor: pointer;
 }
-
 .menu-timeslots-btn:hover {
   background-color: #2795b6;
 }
@@ -171,6 +157,7 @@ ul, ol, dl {
   content: '\2261';
 }
 
+/** Mini schedule **/
 .mini-schedule-header {
   border-bottom: 2px solid #222;
 }
@@ -190,20 +177,15 @@ ul, ol, dl {
   padding-bottom: 2.5em;
 }
 .talk h2 {
-    text-align: center;
-    margin-bottom: 0;
+  max-width: 27em;
+  margin-right: auto;
+  margin-left: auto;
 }
 .talk .byline {
-    margin-top: 0.38095em;
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 0.2em;
-    font-size: 0.9em;
-    font-family: "Droid Serif", Georgia, serif;
-}
-.talk .text-col {
-  max-width: 35em;
-  margin: 1.90476em auto 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.9em;
+  font-family: "Droid Serif", Georgia, serif;
 }
 .talk .workshop {
   text-align: center;
@@ -223,26 +205,17 @@ ul, ol, dl {
 }
 
 .profile {
-  text-align: center;
-  padding-top: 0.625em;
+  margin: 0 auto 1em;
 }
 .profile img {
   width: 220px;
   height: 180px;
 }
 
-/** Other stuff **/
-.colophon {
-  text-align: right;
-  padding-bottom: 20px;
-}
-.focused-list {
-  padding-left: 2.5em;
-}
-
+/** "The Hammer" **/
 @media (max-width: 1024px) {
   .parallell-wrap > div {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 }
 @media (max-width: 768px) {

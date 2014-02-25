@@ -26,6 +26,15 @@ body {
 a:hover {
   cursor: pointer; }
 
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
+  margin: 0;
+  padding: 0; }
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1.25em;
+  text-rendering: optimizeLegibility; }
+
 img,
 object,
 embed {
@@ -79,6 +88,7 @@ textarea {
 select {
   width: 100%; }
 
+/** Grid **/
 .row {
   width: 100%;
   margin-left: auto;
@@ -1242,3 +1252,36 @@ select {
       clear: none; }
     .large-block-grid-12 > li:nth-of-type(12n+1) {
       clear: both; } }
+
+/** Miscellaneous useful HTML classes **/
+.left         { float: left !important; }
+.right        { float: right !important; }
+.text-left    { text-align: left !important; }
+.text-right   { text-align: right !important; }
+.text-center  { text-align: center !important; }
+.text-justify { text-align: justify !important; }
+.hide         { display: none; }
+
+/** Lists **/
+ul, ol, dl {
+  line-height: 1.6;
+  margin-bottom: 1.25em;
+  list-style-position: outside;
+}
+.inline-list {
+  margin: 0 auto 1.0625em;
+  margin-left: -1.375em;
+  margin-right: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+.inline-list>li {
+  list-style: none;
+  float: left;
+  margin-left: 1.375em;
+  display: block;
+}
+.inline-list>li>* {
+  display: block;
+}

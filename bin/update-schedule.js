@@ -30,44 +30,38 @@ var _getTalk = function (talkId, talks) {
   return talk;
 };
 
+var _getTalkTmpl = function(talk, single) {
+  var centered = single ? ' small-centered' : '';
+  return [
+    '<div class="small-12 large-6' + centered + ' columns">',
+    '  <h2>' + talk.tittel + '</h2>',
+    '  <figure class="profile text-col">',
+    '    <img src="' + talk.img + '" />',
+    '    <span class="byline">' + talk.username + '</span>',
+    '  </figure>',
+    '  <p class="text-col">' + talk.beskrivelse + '</p>',
+    '</div>'
+  ];
+};
+
+
 var buildTalk = function (talkId, slotId, talks) {
   var timeslot = program.timeslots[slotId];
   var talk = _getTalk(talkId, talks);
-  return [
-    '<div class="timeslot" id="slot-' + slotId + '">' + timeslot + '</div>',
-    '<div class="row">',
-    '  <article class="large-12 columns">',
-    '    <h2>' + talk.tittel + '</h2>',
-    '    <div class="byline">' + talk.username + '</div>',
-    '    <p class="text-col">' + talk.beskrivelse + '</p>',
-    '    <figure class="profile">', //
-    '      <img src="' + talk.img + '" />',
-    '    </figure>',
-    '  </article>',
-    '</div>'
-  ].join('\n');
+  var tmpl = '<div class="timeslot" id="slot-' + slotId + '">'; 
+  tmpl += timeslot + '</div>';
+  return tmpl + _getTalkTmpl(talk, true).join('\n');
 };
 
 var buildParallell = function (talkId1, talkId2, slotId, data) {
   var timeslot = program.timeslots[slotId];
   var buildParallellTalk = function (talk) {
-    var tmpl = [
-      '<div class="large-6 columns">',
-      '  <h2>' + talk.tittel + '</h2>',
-      '  <div class="byline">' + talk.username + '</div>',
-      '  <p class="text-col">',
-      talk.beskrivelse,
-      '  </p>',
-      '  <figure class="profile">',
-      '    <img src="' + talk.img + '" />',
-      '  </figure>',
-      '</div>'
-    ];
+    var tmpl = _getTalkTmpl(talk, false);
     if (talk.workshop) {
       var workshopWarning = '    ';
       workshopWarning += '<div class="workshop">';
       workshopWarning += '<em>~ This is a workshop ~</em></div>';
-      tmpl.splice(3, 0, workshopWarning);
+      tmpl.splice(6, 0, workshopWarning);
     }
     return tmpl.join('\n');
   };
