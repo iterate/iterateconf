@@ -146,6 +146,17 @@ module.exports = function (grunt) {
         dirs: ['<%= appConfig.dist %>']
       }
     },
+    autoprefixer: {
+      dist: {
+        options: {
+          browsers: [
+            'last 2 version'
+          ],
+          cascade: true
+        },
+        src: '<%= appConfig.dist %>/styles/index.css'
+      }
+    },
     cssmin: {
       dist: {
         files: {
@@ -263,6 +274,7 @@ module.exports = function (grunt) {
     'uglify',
     'htmlmin:dist',
     'cssmin',
+    'autoprefixer',
     'copy',
     'usemin',
     'htmlmin:deploy',

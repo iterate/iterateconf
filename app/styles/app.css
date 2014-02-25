@@ -80,11 +80,8 @@ ul, ol, dl {
   height: 100%;
   overflow: hidden;
 
-  -webkit-transition: -webkit-transform .2s ease-in-out;
-     -moz-transition: -moz-transform .2s ease-in-out;
-          transition: transform .2s ease-in-out;
-  -webkit-transform: translate3d(0,0,0);
-          transform: translate3d(0,0,0);
+  transition: transform .2s ease-in-out;
+  transform: translate3d(0,0,0);
 
   -webkit-tap-highlight-color: transparent;
 }
@@ -115,8 +112,7 @@ ul, ol, dl {
 
   color: #fff;
   background: #006fac;
-  -webkit-box-shadow: 0px 2px 10px rgba(0,0,0,0.7);
-          box-shadow: 0px 2px 10px rgba(0,0,0,0.7);
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.7);
 }
 
 #top-menu h1 {
@@ -142,10 +138,7 @@ ul, ol, dl {
   padding-top: 45px;
 
   background-color: #006fac;
-  -webkit-transition: all 0.3s ease;
-     -moz-transition: all 0.3s ease;
-          transition: all 0.3s ease;
-
+  transition: all 0.3s ease;
 }
 .menu-push a {
   display: block;
