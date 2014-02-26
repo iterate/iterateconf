@@ -25,6 +25,7 @@ var clean = function (data) {
 var _getTalk = function (talkId, talks) {
   var talk = talks[talkId];
   var user = talk.username.split('@')[0];
+  talk.id = talkId;
   talk.beskrivelse = talk.beskrivelse.replace('\n', '<br>');
   talk.img = 'images/' + user + '.jpg';
   return talk;
@@ -35,7 +36,8 @@ var _getTalkTmpl = function(talk, single) {
   var workshopEl = talk.workshop ?
     '<h4 class="workshop">Workshop</h4>' : '';
   return [
-    '<article class="small-12 large-6' + centered + ' columns">',
+    '<article id="talk-' + talk.id + '"',
+    '         class="small-12 large-6' + centered + ' columns">',
     '  <figure class="profile text-col">',
     '    <div class="row">',
     '    <div class="medium-6 columns">',
@@ -85,7 +87,8 @@ var addBreak = function (slotId) {
   return [
     '<section class="talk">',
     '  <h4 class="timeslot text-center" id="slot-' + slotId + '">',
-    timeslot + '</h4>',
+    timeslot,
+    '  </h4>',
     '  <div class="row">',
     '    <article class="large-12 columns">',
     '      <h2 class="text-center">Pause</h2>',
@@ -108,20 +111,23 @@ var generateMiniSchedule = function (data) {
   program.talksOrder.forEach(function (talksInSlot, i) {
     var startTime = program.timeslots[i].split(' - ')[0];
 
-    html += '<a href="#slot-' + i + '">';
+    //html += '<a href="#slot-' + i + '">';
     html += '<div class="row mini-schedule-row">\n';
 
-    html += '<div class="small-5 columns text-left"><p>';
     switch (talksInSlot.length) {
       case 0:
+        html += '<a href="#slot-' + i + '">',
+        html += '<div class="small-5 columns text-left"><p>';
         html += 'Pause';
-        html += '</p></div>\n';
+        html += '</p></div></a>\n';
         break;
       case 1:
       case 2:
         var track1 = _getTalk(talksInSlot[0], data);
+        html += '<a href="#talk-' + track1.id + '">',
+        html += '<div class="small-5 columns text-left"><p>';
         html += track1.tittel;
-        html += '</p></div>\n';
+        html += '</p></div></a>\n';
         break;
     }
 
@@ -129,19 +135,22 @@ var generateMiniSchedule = function (data) {
     html += startTime;
     html += '</h4></div>\n';
 
-    html += '<div class="small-5 columns text-right"><p>';
     switch (talksInSlot.length) {
       case 0:
+        html += '<a href="#slot-' + i + '">',
+        html += '<div class="small-5 columns text-right"><p>';
         html += 'Pause';
         break;
       case 2:
         var track2 = _getTalk(talksInSlot[1], data);
+        html += '<a href="#talk-' + track2.id + '">',
+        html += '<div class="small-5 columns text-right"><p>';
         html += track2.tittel;
         break;
     }
-    html += '</p></div>\n';
+    html += '</p></div></a>\n';
 
-    html += '</div></a>\n';
+    html += '</div>\n';
   });
   html += '\n';
   return html;
