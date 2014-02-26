@@ -11,30 +11,36 @@ The [Ubuntu][] face is used for both titles and paragraph text.
 
 
 ## Dependencies and developing
-Client side, this project is using [VanillaJS][], with some transpiling to get
-the latest and greatest from ES6.
+Client side, this project is using [VanillaJS][].
+You can use the latest and greatest from ES6, including modules, thanks to
+transpiling.
 
-[Grunt][] is used to build the app and has alot of other utilities built in as
-well. It can be installed by doing `npm install -g grunt-cli`.
+Enter [Grunt][]. It is used to build the app and has alot of other utilities
+built in as well. It has to be installed globally using
+`npm install -g grunt-cli`.
 
 Run `npm install` in the project root to download the rest of the needed
 dependencies.
 
-For CSS, the [Foundation framework][] is used, which included the use of
-[Sass][] and [Compass][]. All JavaScript plugins are removed, though.
+For CSS, the grid and reset are borrowed from the [Foundation 5 framework][].
+Other than that -- you're on your own.
 
 [VanillaJS]: http://vanilla-js.com/
 [Grunt]: http://gruntjs.com/
 [Foundation framework]: http://foundation.zurb.com/
-[Sass]: http://sass-lang.com/
-[Compass]: http://compass-style.org/
 
 
 ## Deploy
+The [nginx buildpack][] is included as a way of deployment to
+[app.iterate.no][]:
+
 ```shell
 $ git remote add iterate dokku@app.iterate.no:konferanse
 $ git push iterate master
 ```
+
+[Nginx buildpack]: https://github.com/rhy-jot/buildpack-nginx
+[app.iterate.no]: https://app.iterate.no/
 
 
 ## Updating the conference program
@@ -47,6 +53,13 @@ See `bin/update-schedule.js` on how that works.
 
 
 ## TODO / Ideas
-* Sidebar
-  - Bug: can scroll horizontally after choosing element
-* Handle routing on initial load, jump to current time
+Nothing here, all done? :o)
+
+
+## Authors
+* [Pål Ruud](https://github.com/ruudud) / [@ruudud](https://twitter.com/ruudud)
+
+
+## License
+**Iterateconf** is released under the
+[MIT](https://github.com/iterate/iterateconf/blob/master/LICENSE-MIT) license.
