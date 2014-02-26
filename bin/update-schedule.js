@@ -160,9 +160,10 @@ var generateMainSchedule = function (data) {
   var html = '';
   var numberOfTalks = 0;
   program.talksOrder.forEach(function (talksInSlot, i) {
+    var sameAsPrev1, sameAsPrev2;
     if (i > 0) {
-      var sameAsPrev1 = talksInSlot[0] === program.talksOrder[i - 1][0];
-      var sameAsPrev2 = talksInSlot[1] === program.talksOrder[i - 1][1];
+      sameAsPrev1 = talksInSlot[0] === program.talksOrder[i - 1][0];
+      sameAsPrev2 = talksInSlot[1] === program.talksOrder[i - 1][1];
     }
     html += '\n';
     switch (talksInSlot.length) {

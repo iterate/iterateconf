@@ -17,33 +17,33 @@ var uiCache = {
   leftMenu: null
 };
 
-var _onClick = function(el, handler) {
+var _onClick = (el, handler) => {
   el.addEventListener(tapEvent, handler, false);
 };
-var _removeClick = function(el, handler) {
+var _removeClick = (el, handler) => {
   el.removeEventListener(tapEvent, handler, false);
 };
 
-var _buildMenuItem = function(str, link) {
-    var $el = document.createElement('a');
-    $el.href = link;
-    $el.textContent = str;
-    return $el;
+var _buildMenuItem = (str, link) => {
+  var $el = document.createElement('a');
+  $el.href = link;
+  $el.textContent = str;
+  return $el;
 };
 
-var buildMenu = function() {
+var buildMenu = () => {
   var nav = document.createElement('nav');
   nav.className = 'menu-push';
 
   nav.appendChild(_buildMenuItem('Oversikt', '#section-welcome'));
 
-  roughTimeslots.forEach(function (slot) {
+  roughTimeslots.forEach((slot) => {
     nav.appendChild(_buildMenuItem(slot.str, '#slot-' + slot.id));
   });
   return nav;
 };
 
-var toggleMainContentClickHandler = function(enable) {
+var toggleMainContentClickHandler = (enable) => {
   if (enable) {
     _onClick(uiCache.main, toggleMenu);
   } else {
@@ -51,18 +51,18 @@ var toggleMainContentClickHandler = function(enable) {
   }
 };
 
-var toggleMenu = function(event) {
+var toggleMenu = (event) => {
   event.stopImmediatePropagation();
   event.preventDefault();
 
   if (_leftMenuToggled) {
-    ['-webkit-', '-moz-', ''].forEach(function (vnd) {
+    ['-webkit-', '-moz-', ''].forEach((vnd) => {
       uiCache.main.style[vnd + 'transform'] = 'scale(1)';
     });
     toggleMainContentClickHandler(false);
   } else {
     var transformCss = 'translate3d(' + menuWidth + ', 0px, 0px)';
-    ['-webkit-', '-moz-', ''].forEach(function (vnd) {
+    ['-webkit-', '-moz-', ''].forEach((vnd) => {
       uiCache.main.style[vnd + 'transform'] = transformCss;
     });
     toggleMainContentClickHandler(true);
@@ -70,13 +70,13 @@ var toggleMenu = function(event) {
   _leftMenuToggled = !_leftMenuToggled;
 };
 
-var addSideMenu = function() {
+var addSideMenu = () => {
   var nav = buildMenu();
   uiCache.body.appendChild(nav);
   uiCache.leftMenu = nav;
 };
 
-var bindMenuToggleBtn = function() {
+var bindMenuToggleBtn = () => {
   _onClick(uiCache.btn, toggleMenu);
 };
 

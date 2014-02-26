@@ -1,4 +1,4 @@
-/*jshint node:true*/
+/*jshint node:true,camelcase:false*/
 'use strict';
 var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
 var mountFolder = function (connect, dir) {
@@ -66,11 +66,24 @@ module.exports = function (grunt) {
         dest: '.tmp/iterateconf.amd.js'
       }
     },
+    traceur: {
+      options: {
+        //sourceMaps: true,
+        //freeVariableChecker: false,
+        //experimental: true,
+        blockBinding: true
+      },
+      dist: {
+        files: {
+          '.tmp/iterateconf.es3.amd.js': ['.tmp/iterateconf.amd.js']
+        }
+      }
+    },
     wrapamd: {
       dist: {
         src: [
           '<%= appConfig.app %>/scripts/vendor/loader.js',
-          '<%= concat.amd.dest %>'
+          '.tmp/iterateconf.es3.amd.js'
         ],
         dest: '.tmp/scripts/iterateconf.js',
         options: {
@@ -255,6 +268,7 @@ module.exports = function (grunt) {
   grunt.registerTask('transpilejs', [
     'transpile',
     'concat',
+    'traceur',
     'wrapamd'
   ]);
 
