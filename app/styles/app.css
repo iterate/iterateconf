@@ -34,8 +34,6 @@ a:hover, a:focus {
 
 /** Common components **/
 .text-col {
-  margin-left: auto;
-  margin-right: auto;
   max-width: 40em;
 }
 .colophon {
@@ -106,7 +104,7 @@ a:hover, a:focus {
   line-height: 45px;
   font-size: 1.0625em;
   font-weight: bold;
-  text-align: center;
+  text-align: right;
   padding: 0 0.9375em;
 }
 #top-menu a {
@@ -158,12 +156,15 @@ a:hover, a:focus {
 }
 
 /** Mini schedule **/
-.mini-schedule-header {
-  border-bottom: 2px solid #222;
-}
 .mini-schedule-row {
   padding-top: 10px;
   border-bottom: 1px solid #ccc;
+}
+.mini-schedule-row.mini-schedule-header {
+  border-bottom: 2px solid #222;
+}
+#mini-schedule a:last-child .mini-schedule-row {
+  border: 0;
 }
 .mini-schedule-row p {
   margin-top: 0.2em;
@@ -190,7 +191,10 @@ a:hover, a:focus {
 .talk .workshop {
   color: #666;
 }
-
+.talk .article-text {
+  margin-right: auto;
+  margin-left: auto;
+}
 .timeslot {
   text-align: center;
   line-height: 2em;
@@ -198,6 +202,9 @@ a:hover, a:focus {
   border-top: 2px solid #333;
   border-bottom: 2px solid #333;
   margin-bottom: 0.625em;
+}
+.parallell-wrap > div {
+  margin-bottom: 20px;
 }
 
 .profile {
@@ -208,36 +215,19 @@ a:hover, a:focus {
   height: 180px;
 }
 
-/** "The Hammer" **/
-@media (max-width: 1024px) {
-  .parallell-wrap > div {
-    margin-bottom: 20px;
+/** Some adjustments as the screen gets wider **/
+@media (min-width: 768px) {
+  .profile img {
+    float: right;
   }
-}
-@media (max-width: 768px) {
   #top-menu h1 {
-    text-align: right;
+    text-align: center;
   }
   /** Yes, your eyes does not fool you. **/
-  .mini-schedule-row .text-right {
-    text-align: left !important;
-  }
   .mini-schedule-row .text-left {
     text-align: right !important;
   }
-  .parallell-talks {
-    max-width: 770px;
-  }
-  .parallell-wrap {
-    position: relative;
-    overflow: hidden;
-  }
-  .parallell-wrap > div {
-    float: left;
-    width: 100%;
-    position: relative;
-  }
-  .parallell-article {
-    max-width: 750px;
+  .mini-schedule-row .text-right {
+    text-align: left !important;
   }
 }

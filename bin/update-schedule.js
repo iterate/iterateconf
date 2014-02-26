@@ -35,7 +35,7 @@ var _getTalkTmpl = function(talk, single) {
   var workshopEl = talk.workshop ?
     '<div class="workshop">Workshop</div>' : '';
   return [
-    '<div class="small-12 large-6' + centered + ' columns">',
+    '<article class="small-12 large-6' + centered + ' columns">',
     '  <figure class="profile text-col">',
     '    <div class="row">',
     '    <div class="medium-6 columns">',
@@ -43,13 +43,13 @@ var _getTalkTmpl = function(talk, single) {
     '    </div>',
     '    <div class="small-12 medium-6 columns">',
     '      <h2>' + talk.tittel + '</h2>',
-    workshopEl,
     '      <span class="byline">' + talk.username + '</span>',
+    workshopEl,
     '    </div>',
     '    </div>',
     '  </figure>',
-    '  <p class="text-col">' + talk.beskrivelse + '</p>',
-    '</div>'
+    '  <p class="article-text text-col">' + talk.beskrivelse + '</p>',
+    '</article>'
   ];
 };
 
@@ -110,7 +110,7 @@ var generateMiniSchedule = function (data) {
     html += '<a href="#slot-' + i + '">';
     html += '<div class="row mini-schedule-row">\n';
 
-    html += '<div class="small-5 columns text-right"><p>';
+    html += '<div class="small-5 columns text-left"><p>';
     switch (talksInSlot.length) {
       case 0:
         html += 'Pause';
@@ -128,7 +128,7 @@ var generateMiniSchedule = function (data) {
     html += startTime;
     html += '</h4></div>\n';
 
-    html += '<div class="small-5 columns text-left"><p>';
+    html += '<div class="small-5 columns text-right"><p>';
     switch (talksInSlot.length) {
       case 0:
         html += 'Pause';
