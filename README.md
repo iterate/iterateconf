@@ -49,6 +49,4 @@ See `bin/update-schedule.js` on how that works.
 ## TODO / Ideas
 * Sidebar
   - Bug: can scroll horizontally after choosing element
-  - Improve design / "clickability"
-  - Add top element
 * Handle routing on initial load, jump to current time

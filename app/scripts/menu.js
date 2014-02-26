@@ -23,14 +23,21 @@ var _removeClick = function(el, handler) {
   el.removeEventListener(tapEvent, handler, false);
 };
 
+var _buildMenuItem = function(str, link) {
+    var $el = document.createElement('a');
+    $el.href = link;
+    $el.textContent = str;
+    return $el;
+};
+
 var buildMenu = function() {
   var nav = document.createElement('nav');
   nav.className = 'menu-push';
+
+  nav.appendChild(_buildMenuItem('Oversikt', '#section-welcome'));
+
   roughTimeslots.forEach(function (slot) {
-    var item = document.createElement('a');
-    item.href = '#slot-' + slot.id;
-    item.textContent = slot.str;
-    nav.appendChild(item);
+    nav.appendChild(_buildMenuItem(slot.str, '#slot-' + slot.id));
   });
   return nav;
 };
