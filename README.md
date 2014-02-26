@@ -1,20 +1,16 @@
 # Iterate Conference Schedule App
 
 ## Color schemes and typography
-
 Iterate blue is used as the main color. Derivatives from this can be found on
 [Colorhexa][].
 
-The serif Georgia should be used for all main text content.
-[Droid Serif][] is used for titles.
-
+The [Ubuntu][] face is used for both titles and paragraph text.
 
 [Colorhexa]: http://www.colorhexa.com/006fac
-[Droid Serif]: http://www.google.com/fonts/specimen/Droid+Serif
+[Ubuntu]: http://www.google.com/fonts/specimen/Ubuntu
 
 
 ## Dependencies and developing
-
 Client side, this project is using [VanillaJS][], with some transpiling to get
 the latest and greatest from ES6.
 
@@ -27,34 +23,34 @@ dependencies.
 For CSS, the [Foundation framework][] is used, which included the use of
 [Sass][] and [Compass][]. All JavaScript plugins are removed, though.
 
-
 [VanillaJS]: http://vanilla-js.com/
 [Grunt]: http://gruntjs.com/
 [Foundation framework]: http://foundation.zurb.com/
 [Sass]: http://sass-lang.com/
 [Compass]: http://compass-style.org/
 
-## Deploy
 
+## Deploy
 ```shell
 $ git remote add iterate dokku@app.iterate.no:konferanse
 $ git push iterate master
 ```
 
-## Updating the conference program
 
+## Updating the conference program
 The program is scraped from a Google Spreadsheet using this command:
 
     npm run-script update-schedule
 
-See `bin/update-schedule.js` for how that works.
+The result is injected into `app/index.html`.
+See `bin/update-schedule.js` on how that works.
 
 
 ## TODO / Ideas
-
-* Improve sidebar
-* Use ES6 instead of RJS
-* Short program at the top
-* Better visualization of workshops, too much repeating now
-  - When choosing a workshop, "swipe" the rest of the track as well?
+* Direct link to talk, not just timeslot
+* Sidebar
+  - Bug: can scroll horizontally after choosing element
+  - Improve design / "clickability"
+  - Add top element
+* Better visualization of workshops, reduce repetition
 * Handle routing on initial load, jump to current time

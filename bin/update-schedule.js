@@ -33,7 +33,7 @@ var _getTalk = function (talkId, talks) {
 var _getTalkTmpl = function(talk, single) {
   var centered = single ? ' small-centered' : '';
   var workshopEl = talk.workshop ?
-    '<div class="workshop">Workshop</div>' : '';
+    '<h4 class="workshop">Workshop</h4>' : '';
   return [
     '<article class="small-12 large-6' + centered + ' columns">',
     '  <figure class="profile text-col">',
@@ -56,8 +56,8 @@ var _getTalkTmpl = function(talk, single) {
 var buildTalk = function (talkId, slotId, talks) {
   var timeslot = program.timeslots[slotId];
   var talk = _getTalk(talkId, talks);
-  var tmpl = '<div class="timeslot" id="slot-' + slotId + '">';
-  tmpl += timeslot + '</div>';
+  var tmpl = '<h4 class="timeslot text-center" id="slot-' + slotId + '">';
+  tmpl += timeslot + '</h4>';
   return tmpl + _getTalkTmpl(talk, true).join('\n');
 };
 
@@ -69,8 +69,8 @@ var buildParallell = function (talkId1, talkId2, slotId, data) {
   };
 
   return [
-    '<div class="timeslot parallell-indicator" id="slot-' + slotId + '">',
-    timeslot + '</div>',
+    '<h4 class="timeslot text-center parallell-indicator"',
+    '    id="slot-' + slotId + '">' + timeslot + '</h4>',
     '<div class="row parallell-talks">',
     '  <div class="parallell-wrap">',
     buildParallellTalk(_getTalk(talkId1, data)),
@@ -84,7 +84,8 @@ var addBreak = function (slotId) {
   var timeslot = program.timeslots[slotId];
   return [
     '<section class="talk">',
-    '  <div class="timeslot" id="slot-' + slotId + '">' + timeslot + '</div>',
+    '  <h4 class="timeslot text-center" id="slot-' + slotId + '">',
+    timeslot + '</h4>',
     '  <div class="row">',
     '    <article class="large-12 columns">',
     '      <h2 class="text-center">Pause</h2>',
