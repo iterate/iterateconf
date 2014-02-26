@@ -74,10 +74,8 @@ var buildParallell = function (talkId1, talkId2, slotId, data) {
     '<h4 class="timeslot text-center parallell-indicator"',
     '    id="slot-' + slotId + '">' + timeslot + '</h4>',
     '<div class="row parallell-talks">',
-    '  <div class="parallell-wrap">',
     buildParallellTalk(_getTalk(talkId1, data)),
     buildParallellTalk(_getTalk(talkId2, data)),
-    '  </div>',
     '</div>'
   ].join('\n');
 };

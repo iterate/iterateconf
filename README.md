@@ -47,7 +47,6 @@ See `bin/update-schedule.js` on how that works.
 
 
 ## TODO / Ideas
-* Direct link to talk, not just timeslot
 * Sidebar
   - Bug: can scroll horizontally after choosing element
   - Improve design / "clickability"
