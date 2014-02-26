@@ -162,7 +162,7 @@ a:hover, a:focus {
 .mini-schedule-row.mini-schedule-header {
   border-bottom: 2px solid #222;
 }
-#mini-schedule a:last-child .mini-schedule-row {
+#mini-schedule .mini-schedule-row:last-child {
   border: 0;
 }
 .mini-schedule-row p {
