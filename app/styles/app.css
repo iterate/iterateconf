@@ -25,7 +25,7 @@ h1,h2,h3,h4,h5,h6{
 }
 a {
   color: #2ba6cb;
-  text-decoration: none;
+  text-decoration: underline;
   line-height: inherit;
 }
 a:hover, a:focus {
@@ -188,11 +188,7 @@ a:hover, a:focus {
   font-family: "Droid Serif", Georgia, serif;
 }
 .talk .workshop {
-  text-align: center;
-  margin-top: 0.625em;
-  padding: 0.625em;
-  background: #006fac;
-  color: #fff;
+  color: #666;
 }
 
 .timeslot {

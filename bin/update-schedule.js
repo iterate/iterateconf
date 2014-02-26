@@ -32,23 +32,31 @@ var _getTalk = function (talkId, talks) {
 
 var _getTalkTmpl = function(talk, single) {
   var centered = single ? ' small-centered' : '';
+  var workshopEl = talk.workshop ?
+    '<div class="workshop">Workshop</div>' : '';
   return [
     '<div class="small-12 large-6' + centered + ' columns">',
-    '  <h2>' + talk.tittel + '</h2>',
     '  <figure class="profile text-col">',
-    '    <img src="' + talk.img + '" />',
-    '    <span class="byline">' + talk.username + '</span>',
+    '    <div class="row">',
+    '    <div class="medium-6 columns">',
+    '      <img src="' + talk.img + '" />',
+    '    </div>',
+    '    <div class="small-12 medium-6 columns">',
+    '      <h2>' + talk.tittel + '</h2>',
+    workshopEl,
+    '      <span class="byline">' + talk.username + '</span>',
+    '    </div>',
+    '    </div>',
     '  </figure>',
     '  <p class="text-col">' + talk.beskrivelse + '</p>',
     '</div>'
   ];
 };
 
-
 var buildTalk = function (talkId, slotId, talks) {
   var timeslot = program.timeslots[slotId];
   var talk = _getTalk(talkId, talks);
-  var tmpl = '<div class="timeslot" id="slot-' + slotId + '">'; 
+  var tmpl = '<div class="timeslot" id="slot-' + slotId + '">';
   tmpl += timeslot + '</div>';
   return tmpl + _getTalkTmpl(talk, true).join('\n');
 };
@@ -57,12 +65,6 @@ var buildParallell = function (talkId1, talkId2, slotId, data) {
   var timeslot = program.timeslots[slotId];
   var buildParallellTalk = function (talk) {
     var tmpl = _getTalkTmpl(talk, false);
-    if (talk.workshop) {
-      var workshopWarning = '    ';
-      workshopWarning += '<div class="workshop">';
-      workshopWarning += '<em>~ This is a workshop ~</em></div>';
-      tmpl.splice(6, 0, workshopWarning);
-    }
     return tmpl.join('\n');
   };
 
@@ -85,7 +87,7 @@ var addBreak = function (slotId) {
     '  <div class="timeslot" id="slot-' + slotId + '">' + timeslot + '</div>',
     '  <div class="row">',
     '    <article class="large-12 columns">',
-    '      <h2>Pause</h2>',
+    '      <h2 class="text-center">Pause</h2>',
     '    </article>',
     '  </div>',
     '</section>'

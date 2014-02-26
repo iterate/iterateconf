@@ -29,8 +29,12 @@ module.exports = function (grunt) {
     cachebust: cachebust,
     watch: {
       scripts: {
-        files: ['<%= appConfig.app %>/scripts/**/*.js'],
-        tasks: ['jshint', 'transpilejs']
+        files: ['<%= jshint.browser %>'],
+        tasks: ['jshint:browser', 'transpilejs']
+      },
+      nodescripts: {
+        files: ['<%= jshint.node %>'],
+        tasks: ['jshint:node']
       },
       livereload: {
         options: {
@@ -38,7 +42,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= appConfig.app %>/*.html',
-          '{.tmp,<%= appConfig.app %>}/styles/{,*/}*.css',
+          '<%= appConfig.app %>/styles/{,*/}*.css',
           '.tmp/scripts/{,*/}*.js',
           '<%= appConfig.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
         ]
@@ -125,10 +129,12 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc',
         force: true
       },
-      all: [
+      node: [
         'Gruntfile.js',
         'bin/{,*/}*.js',
-        'tasks/{,*/}*.js',
+        'tasks/{,*/}*.js'
+      ],
+      browser: [
         '<%= appConfig.app %>/scripts/{,*/}*.js',
         '!<%= appConfig.app %>/scripts/vendor/*'
       ]
