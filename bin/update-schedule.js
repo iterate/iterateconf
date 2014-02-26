@@ -31,10 +31,12 @@ var _getTalk = function (talkId, talks) {
   return talk;
 };
 
-var _getTalkTmpl = function(talk, single) {
+var _getTalkTmpl = function(talk, single, saveAsPrev) {
   var centered = single ? ' small-centered' : '';
   var workshopEl = talk.workshop ?
     '<h4 class="workshop">Workshop</h4>' : '';
+  var description = saveAsPrev ?
+    '(Fortsetter fra forrige slot.)' : talk.beskrivelse;
   return [
     '<article id="talk-' + talk.id + '"',
     '         class="small-12 large-6' + centered + ' columns">',
@@ -50,23 +52,24 @@ var _getTalkTmpl = function(talk, single) {
     '    </div>',
     '    </div>',
     '  </figure>',
-    '  <p class="article-text text-col">' + talk.beskrivelse + '</p>',
+    '  <p class="article-text text-col">' + description + '</p>',
     '</article>'
   ];
 };
 
-var buildTalk = function (talkId, slotId, talks) {
+var buildTalk = function (talkId, slotId, talks, sameAsPrev) {
   var timeslot = program.timeslots[slotId];
   var talk = _getTalk(talkId, talks);
   var tmpl = '<h4 class="timeslot text-center" id="slot-' + slotId + '">';
   tmpl += timeslot + '</h4>';
-  return tmpl + _getTalkTmpl(talk, true).join('\n');
+  return tmpl + _getTalkTmpl(talk, true, sameAsPrev).join('\n');
 };
 
-var buildParallell = function (talkId1, talkId2, slotId, data) {
+var buildParallell = function (talkId1, talkId2, slotId, data, sameAsPrev1,
+                               sameAsPrev2) {
   var timeslot = program.timeslots[slotId];
-  var buildParallellTalk = function (talk) {
-    var tmpl = _getTalkTmpl(talk, false);
+  var buildParallellTalk = function (talk, sameAsPrev) {
+    var tmpl = _getTalkTmpl(talk, false, sameAsPrev);
     return tmpl.join('\n');
   };
 
@@ -74,8 +77,8 @@ var buildParallell = function (talkId1, talkId2, slotId, data) {
     '<h4 class="timeslot text-center parallell-indicator"',
     '    id="slot-' + slotId + '">' + timeslot + '</h4>',
     '<div class="row parallell-talks">',
-    buildParallellTalk(_getTalk(talkId1, data)),
-    buildParallellTalk(_getTalk(talkId2, data)),
+    buildParallellTalk(_getTalk(talkId1, data), sameAsPrev1),
+    buildParallellTalk(_getTalk(talkId2, data), sameAsPrev2),
     '</div>'
   ].join('\n');
 };
@@ -157,20 +160,26 @@ var generateMainSchedule = function (data) {
   var html = '';
   var numberOfTalks = 0;
   program.talksOrder.forEach(function (talksInSlot, i) {
+    if (i > 0) {
+      var sameAsPrev1 = talksInSlot[0] === program.talksOrder[i - 1][0];
+      var sameAsPrev2 = talksInSlot[1] === program.talksOrder[i - 1][1];
+    }
     html += '\n';
     switch (talksInSlot.length) {
       case 0:
         html += addBreak(i);
         break;
       case 1:
-        html += addTalk(buildTalk(talksInSlot[0], i, data));
+        html += addTalk(buildTalk(talksInSlot[0], i, data, sameAsPrev1));
         numberOfTalks += 1;
         break;
       case 2:
         html += addTalk(buildParallell(talksInSlot[0],
                                        talksInSlot[1],
                                        i,
-                                       data));
+                                       data,
+                                       sameAsPrev1,
+                                       sameAsPrev2));
         numberOfTalks += 2;
         break;
     }

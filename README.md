@@ -51,5 +51,4 @@ See `bin/update-schedule.js` on how that works.
   - Bug: can scroll horizontally after choosing element
   - Improve design / "clickability"
   - Add top element
-* Better visualization of workshops, reduce repetition
 * Handle routing on initial load, jump to current time
