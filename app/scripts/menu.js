@@ -12,7 +12,8 @@ var tapEvent = hasTouch ? 'touchstart' : 'click';
 var uiCache = {
   btn: document.getElementById('menu-timeslots-btn'),
   body: document.body,
-  mainContent: document.getElementById('main'),
+  main: document.getElementById('main'),
+  mainContent: document.getElementById('main-content'),
   leftMenu: null
 };
 
@@ -44,9 +45,9 @@ var buildMenu = function() {
 
 var toggleMainContentClickHandler = function(enable) {
   if (enable) {
-    _onClick(uiCache.mainContent, toggleMenu);
+    _onClick(uiCache.main, toggleMenu);
   } else {
-    _removeClick(uiCache.mainContent, toggleMenu);
+    _removeClick(uiCache.main, toggleMenu);
   }
 };
 
@@ -56,13 +57,13 @@ var toggleMenu = function(event) {
 
   if (_leftMenuToggled) {
     ['-webkit-', '-moz-', ''].forEach(function (vnd) {
-      uiCache.mainContent.style[vnd + 'transform'] = '';
+      uiCache.main.style[vnd + 'transform'] = 'scale(1)';
     });
     toggleMainContentClickHandler(false);
   } else {
     var transformCss = 'translate3d(' + menuWidth + ', 0px, 0px)';
     ['-webkit-', '-moz-', ''].forEach(function (vnd) {
-      uiCache.mainContent.style[vnd + 'transform'] = transformCss;
+      uiCache.main.style[vnd + 'transform'] = transformCss;
     });
     toggleMainContentClickHandler(true);
   }
