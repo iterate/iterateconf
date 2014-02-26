@@ -6,9 +6,7 @@ var onUpdateReady = function() {
     // Browser downloaded a new app cache.
     // Swap it in and reload the page to get the new hotness.
     window.applicationCache.swapCache();
-    if (confirm('A new version of the program is available. Load it?')) {
-      window.location.reload();
-    }
+    window.location.reload();
   }
 };
 
