@@ -16,13 +16,13 @@ You can use the latest and greatest from ES6, including modules, thanks to
 transpiling.
 
 Enter [Grunt][]. It is used to build the app and has alot of other utilities
-built in as well. It has to be installed globally using
-`npm install -g grunt-cli`.
+built in as well.  
+Go ahead and install it globally using `npm install -g grunt-cli`.
 
 Run `npm install` in the project root to download the rest of the needed
 dependencies.
 
-For CSS, the grid and reset are borrowed from the [Foundation 5 framework][].
+For CSS, the grid and reset are borrowed from the [Foundation framework][].
 Other than that -- you're on your own.
 
 [VanillaJS]: http://vanilla-js.com/
@@ -31,7 +31,7 @@ Other than that -- you're on your own.
 
 
 ## Deploy
-The [nginx buildpack][] is included as a way of deployment to
+Configuration for the [nginx buildpack][] is included as a way of deployment to
 [app.iterate.no][]:
 
 ```shell
@@ -50,6 +50,11 @@ The program is scraped from a Google Spreadsheet using this command:
 
 The result is injected into `app/index.html`.
 See `bin/update-schedule.js` on how that works.
+
+
+## Old Conference Schedules
+Old conference programs are kept at subdirectories in `www/`, e.g. `www/2014w`
+is the place to look for the 2014 Iterate Conference Winter Edition.
 
 
 ## TODO / Ideas

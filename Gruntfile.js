@@ -134,7 +134,7 @@ module.exports = function (grunt) {
       }
     },
     clean: {
-      dist: ['.tmp', '<%= appConfig.dist %>/*'],
+      dist: ['.tmp'],
       server: '.tmp'
     },
     jshint: {
