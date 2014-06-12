@@ -172,7 +172,6 @@ a:hover, a:focus {
 /** Rules for the talks **/
 .talk {
   position: relative;
-  padding-bottom: 2.5em;
 }
 .talk h2 {
   max-width: 27em;
@@ -193,6 +192,7 @@ a:hover, a:focus {
 .talk .article-text {
   margin-right: auto;
   margin-left: auto;
+  padding-bottom: 2em;
 }
 .timeslot {
   font-weight: 400;
@@ -215,9 +215,6 @@ a:hover, a:focus {
 
 /** Some adjustments as the screen gets wider **/
 @media (min-width: 768px) {
-  .profile img {
-    float: right;
-  }
   #top-menu h1 {
     text-align: center;
   }
@@ -228,4 +225,35 @@ a:hover, a:focus {
   .mini-schedule-row .text-right {
     text-align: left !important;
   }
+}
+
+/*** Star Rating ***
+ Source: http://css-tricks.com/star-ratings/
+*/
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: left;
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.3em;
+  cursor: pointer;
+}
+.rating > span:hover,
+.rating > span:hover ~ span {
+  color: transparent;
+}
+.rating > span.selected:before,
+.rating > span.selected ~ span:before,
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+   left: 0;
+   color: gold;
 }
