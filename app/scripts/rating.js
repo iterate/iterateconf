@@ -3,7 +3,7 @@
 
 var starClickHandler = (event) => {
   event.preventDefault();
-  var $clickedStar = event.toElement;
+  var $clickedStar = event.target;
   var $rating = $clickedStar.parentElement;
   var $stars = $rating.querySelectorAll('span');
 

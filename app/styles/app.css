@@ -241,7 +241,7 @@ a:hover, a:focus {
 .rating > span {
   display: inline-block;
   position: relative;
-  width: 1.3em;
+  width: 1.1em;
   cursor: pointer;
 }
 .rating > span:hover,
