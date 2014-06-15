@@ -6,6 +6,5 @@
   "quotmark": "single",
   "maxlen": 80,
   "trailing": true,
-  "expr": true,
-  "curly": true
+  "expr": true
 }
