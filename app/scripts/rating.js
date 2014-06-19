@@ -1,29 +1,19 @@
 /*jshint browser:true*/
 /*globals console,Firebase,FirebaseSimpleLogin*/
 
-var userId,
-    domCache = {};
+import { firebaseStore, onLoginStateChanged } from 'firebase';
 
-// Set up Firebase
-var userId;
-var firebaseStore = new Firebase('https://iterateconf.firebaseio.com/rating');
-var firebaseAuth = new FirebaseSimpleLogin(firebaseStore, (error, user) => {
-  if (error) {
-    console.log('Firebase error', error);
-  } else if (user) {
-    console.log('Re-using user object', user);
-    userId = user.id;
-    firebaseStore.child(userId).once('value', setExistingVotes);
-  } else {
-    console.log('Creating user object');
-    firebaseAuth.login('anonymous', { rememberMe: true });
-  }
+var domCache = {}, userId;
+
+onLoginStateChanged((uId) => {
+  userId = uId;
+  firebaseStore.child(userId).once('value', setExistingVotes);
 });
-
-window.fire = firebaseStore;
 
 var setExistingVotes = (data) => {
   var ratings = data.val();
+  if (!ratings) return;
+
   var $ratings = domCache.ratings || document.querySelectorAll('.rating');
   var voteToIdx = { 1: 4, 2: 3, 3: 2, 4: 1 };
 
@@ -40,14 +30,9 @@ var setExistingVotes = (data) => {
   });
 };
 
-var onPersist = (error) => {
-  if (error) console.log('Sync failed', error);
-};
-
 var persistVote = (talkId, rating) => {
   if (!userId) {
-    console.log('Missing user id, skipping sync and try to re-login..');
-    firebaseAuth.login('anonymous', { rememberMe: true });
+    console.log('Missing user id, skipping sync');
     return;
   }
   firebaseStore.child(userId).child(talkId).set({ votes: rating });
@@ -76,19 +61,9 @@ var bindStarClicks = () => {
     $rating.addEventListener('click', starClickHandler, false);
   });
 };
-var loginUser = () => {
-  console.log('Firebase auth obj', firebaseAuth);
-  if (firebaseAuth.id) {
-    userId = firebaseAuth.id;
-  } else {
-    console.log('Loggin in..');
-    firebaseAuth.login('anonymous', { rememberMe: true });
-  }
-};
 
 var onWindowLoad = () => {
   bindStarClicks();
-  //window.setTimeout(loginUser, 1000);
 };
 
 window.addEventListener('load', onWindowLoad, false);

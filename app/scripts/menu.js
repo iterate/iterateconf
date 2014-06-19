@@ -2,6 +2,9 @@
 /*global DocumentTouch*/
 
 import { roughTimeslots } from 'program';
+import { showScores } from 'scoreboard';
+
+showScores(document.getElementById('scoreboard'));
 
 var _leftMenuToggled = false;
 var menuWidth = '160px';
