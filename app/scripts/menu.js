@@ -4,8 +4,6 @@
 import { roughTimeslots } from 'program';
 import { showScores } from 'scoreboard';
 
-showScores(document.getElementById('scoreboard'));
-
 var _leftMenuToggled = false;
 var menuWidth = '160px';
 var hasTouch = ('ontouchstart' in window) ||
@@ -17,6 +15,7 @@ var uiCache = {
   body: document.body,
   main: document.getElementById('main'),
   mainContent: document.getElementById('main-content'),
+  scoreboard: document.getElementById('scoreboard'),
   leftMenu: null
 };
 
@@ -40,9 +39,17 @@ var buildMenu = () => {
 
   nav.appendChild(_buildMenuItem('Oversikt', '#section-welcome'));
 
+
   roughTimeslots.forEach((slot) => {
     nav.appendChild(_buildMenuItem(slot.str, '#slot-' + slot.id));
   });
+
+  var $stats = _buildMenuItem('Stemmer', '#');
+  _onClick($stats, (e) => {
+    e.preventDefault();
+    showScores(uiCache.scoreboard);
+  });
+  nav.appendChild($stats);
   return nav;
 };
 

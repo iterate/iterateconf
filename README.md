@@ -61,7 +61,9 @@ is the place to look for the 2014 Iterate Conference Winter Edition.
 
  - [ ] Vote on talk (4 stars to pick from)
    * [x] UI
-   * [ ] Persist votes somewhere
+   * [x] Persist votes somewhere
+   * [ ] Get totalt votes based on title, sort by highest ranking
+   * [ ] UI scoreboard
  - [ ] Improve left menu, i.e. remove all timeslots, replace with "Go to now"
  - [ ] mailto: link on email addresses (to give feedback)
 
