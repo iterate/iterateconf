@@ -1,14 +1,11 @@
 /*jshint browser:true*/
-/*global DocumentTouch*/
 
 import { roughTimeslots } from 'program';
 import { showScores } from 'scoreboard';
+import { onClick, removeClick } from 'utils';
 
 var _leftMenuToggled = false;
 var menuWidth = '160px';
-var hasTouch = ('ontouchstart' in window) ||
-    window.DocumentTouch && document instanceof DocumentTouch;
-var tapEvent = hasTouch ? 'touchstart' : 'click';
 
 var uiCache = {
   btn: document.getElementById('menu-timeslots-btn'),
@@ -17,13 +14,6 @@ var uiCache = {
   mainContent: document.getElementById('main-content'),
   scoreboard: document.getElementById('scoreboard'),
   leftMenu: null
-};
-
-var _onClick = (el, handler) => {
-  el.addEventListener(tapEvent, handler, false);
-};
-var _removeClick = (el, handler) => {
-  el.removeEventListener(tapEvent, handler, false);
 };
 
 var _buildMenuItem = (str, link) => {
@@ -39,25 +29,24 @@ var buildMenu = () => {
 
   nav.appendChild(_buildMenuItem('Oversikt', '#section-welcome'));
 
-
-  roughTimeslots.forEach((slot) => {
-    nav.appendChild(_buildMenuItem(slot.str, '#slot-' + slot.id));
-  });
-
-  var $stats = _buildMenuItem('Stemmer', '#');
-  _onClick($stats, (e) => {
+  var $stats = _buildMenuItem('Ratings', '#');
+  onClick($stats, (e) => {
     e.preventDefault();
     showScores(uiCache.scoreboard);
   });
   nav.appendChild($stats);
+
+  roughTimeslots.forEach((slot) => {
+    nav.appendChild(_buildMenuItem(slot.str, '#slot-' + slot.id));
+  });
   return nav;
 };
 
 var toggleMainContentClickHandler = (enable) => {
   if (enable) {
-    _onClick(uiCache.main, toggleMenu);
+    onClick(uiCache.main, toggleMenu);
   } else {
-    _removeClick(uiCache.main, toggleMenu);
+    removeClick(uiCache.main, toggleMenu);
   }
 };
 
@@ -87,7 +76,7 @@ var addSideMenu = () => {
 };
 
 var bindMenuToggleBtn = () => {
-  _onClick(uiCache.btn, toggleMenu);
+  onClick(uiCache.btn, toggleMenu);
 };
 
 addSideMenu();

@@ -43,6 +43,25 @@ a:hover, a:focus {
 .focused-list {
   padding-left: 2.5em;
 }
+button.close {
+  float: right;
+  -webkit-appearance: none;
+  padding: 0 0.3em;
+  margin-right: 20px;
+  margin-top: -0.6em;
+  cursor: pointer;
+  line-height: 1;
+  color: #000;
+  font-weight: 700;
+  font-size: 150%;
+  background: 0 0;
+  border: none;
+}
+.modal {
+  height: 100%;
+  display: none;
+  padding: 1em;
+}
 
 /** left-menu, heading and main content setup**/
 .viewport {
