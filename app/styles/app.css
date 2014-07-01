@@ -34,7 +34,7 @@ a:hover, a:focus {
 
 /** Common components **/
 .text-col {
-  max-width: 40em;
+  /* max-width: 40em; */
 }
 .colophon {
   text-align: right;
@@ -238,12 +238,14 @@ button.close {
     text-align: center;
   }
   /** Yes, your eyes does not fool you. **/
+  /** Needed when two parallel tracks in the mini program
   .mini-schedule-row .text-left {
     text-align: right !important;
   }
   .mini-schedule-row .text-right {
     text-align: left !important;
   }
+  **/
 }
 
 /*** Star Rating ***

@@ -121,13 +121,16 @@ var generateMiniSchedule = function (data) {
   program.talksOrder.forEach(function (talksInSlot, i) {
     var startTime = program.timeslots[i].split(' - ')[0];
 
-    //html += '<a href="#slot-' + i + '">';
     html += '<div class="row mini-schedule-row">\n';
+
+    html += '<div class="small-3 columns text-center"><h4>';
+    html += startTime;
+    html += '</h4></div>\n';
 
     switch (talksInSlot.length) {
       case 0:
         html += '<a href="#slot-' + i + '">',
-        html += '<div class="small-5 columns text-left"><p>';
+        html += '<div class="small-9 columns text-left"><p>';
         html += 'Pause';
         html += '</p></div></a>\n';
         break;
@@ -135,30 +138,11 @@ var generateMiniSchedule = function (data) {
       case 2:
         var track1 = _getTalk(talksInSlot[0], data);
         html += '<a href="#talk-' + track1.id + '">',
-        html += '<div class="small-5 columns text-left"><p>';
+        html += '<div class="small-9 columns text-left"><p>';
         html += track1.tittel;
         html += '</p></div></a>\n';
         break;
     }
-
-    html += '<div class="small-2 columns text-center"><h4>';
-    html += startTime;
-    html += '</h4></div>\n';
-
-    switch (talksInSlot.length) {
-      case 0:
-        html += '<a href="#slot-' + i + '">',
-        html += '<div class="small-5 columns text-right"><p>';
-        html += 'Pause';
-        break;
-      case 2:
-        var track2 = _getTalk(talksInSlot[1], data);
-        html += '<a href="#talk-' + track2.id + '">',
-        html += '<div class="small-5 columns text-right"><p>';
-        html += track2.tittel;
-        break;
-    }
-    html += '</p></div></a>\n';
 
     html += '</div>\n';
   });
