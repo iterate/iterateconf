@@ -58,7 +58,6 @@ button.close {
   border: none;
 }
 .modal {
-  height: 100%;
   display: none;
   padding: 1em;
 }
