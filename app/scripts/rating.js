@@ -15,7 +15,7 @@ var setExistingVotes = (data) => {
   if (!ratings) return;
 
   var $ratings = domCache.ratings || document.querySelectorAll('.rating');
-  var voteToIdx = { 1: 4, 2: 3, 3: 2, 4: 1 };
+  var voteToIdx = { 1: 3, 2: 2, 3: 1, 4: 0 };
 
   [...$ratings].forEach(($rating) => {
     var talkId = $rating.dataset.talkid;
@@ -26,7 +26,7 @@ var setExistingVotes = (data) => {
     }
     var votes = parseInt(rating.votes, 10);
     var idx = voteToIdx[votes];
-    $rating.childNodes[idx].classList.add('selected');
+    $rating.children[idx].classList.add('selected');
   });
 };
 
