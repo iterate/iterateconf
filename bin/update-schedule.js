@@ -10,7 +10,7 @@ var RED = '\033[31m';
 var GREEN = '\x1B[32m';
 var RESET = '\033[0m';
 
-var PROGRAM_SPREADSHEET_KEY = '0ApxuzZeYd8qddFFPSE1NZGtycUtEY2ZlSHJOa3NmSXc';
+var PROGRAM_SPREADSHEET_KEY = '1wtgMQoJ5mrQnSEC-Ig7NnFj_u79LjdJfWkojbNsft54';
 var TALKSHTML = 'app/index.html';
 var TALKSID = '#talks';
 var MINISCHEDULEID = '#mini-schedule';
