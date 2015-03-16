@@ -12,7 +12,8 @@
   "scripts": {
     "start": "grunt server",
     "build": "grunt build",
-    "update-schedule": "node --harmony bin/update-schedule.js"
+    "update-schedule": "node --harmony bin/update-schedule.js",
+    "calculate-ratings": "node --harmony bin/calculate-ratings.js"
   },
   "repository": [
     {
@@ -50,7 +51,8 @@
     "grunt-es6-module-transpiler": "~0.6.0",
     "grunt-contrib-uglify": "~0.3.2",
     "grunt-autoprefixer": "^0.7.2",
-    "grunt-traceur": "0.0.3"
+    "grunt-traceur": "0.0.3",
+    "lodash": "3.5.0"
   },
   "engines": {
     "node": ">=0.10.0"
