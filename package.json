@@ -10,7 +10,7 @@
     }
   ],
   "scripts": {
-    "start": "grunt server",
+    "start": "NODE_ENV=production harp server -p $PORT",
     "build": "grunt build",
     "update-schedule": "node --harmony bin/update-schedule.js",
     "calculate-ratings": "node --harmony bin/calculate-ratings.js"
@@ -27,7 +27,9 @@
       "url": "https://raw.github.com/iterate/iterateconf/master/LICENSE-MIT"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+    "harp": "^0.17.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-concurrent": "~0.1.0",

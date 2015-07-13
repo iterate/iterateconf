@@ -20,7 +20,7 @@ module.exports = function (grunt) {
   // configurable paths
   var appPaths = {
     app: 'app',
-    dist: 'www'
+    dist: 'public'
   };
   var cachebust = +(new Date());
 
