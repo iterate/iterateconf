@@ -215,38 +215,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-    replace: {
-      dist: {
-        src: ['<%= appConfig.dist %>/index.html'],
-        dest: '<%= appConfig.dist %>/',
-        replacements: [
-          {
-            from: /<html lang="en">/,
-            to: '<html manifest="manifest.appcache" lang="en">'
-          },
-          {
-            from: /<%=cachebust%>/,
-            to: function () {
-              return cachebust;
-            }
-          }
-        ]
-      }
-    },
-    manifest: {
-      dist: {
-        options: {
-          basePath: '<%= appConfig.dist %>',
-          verbose: false,
-          timestamp: true
-        },
-        src: [
-          'scripts/{,*/}*.js',
-          'styles/{,*/}*.css'
-        ],
-        dest: '<%= appConfig.dist %>/manifest.appcache'
-      }
-    },
     copy: {
       dist: {
         files: [{
@@ -297,9 +265,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'copy',
     'usemin',
-    'htmlmin:deploy',
-    'replace',
-    'manifest'
+    'htmlmin:deploy'
   ]);
 
   grunt.registerTask('default', [ 'build' ]);
