@@ -31,17 +31,12 @@ Other than that -- you're on your own.
 
 
 ## Deploy
-Configuration for the [nginx buildpack][] is included as a way of deployment to
-[app.iterate.no][]:
+Running with Harp on konferanse.app.iterate.no
 
 ```shell
 $ git remote add iterate dokku@app.iterate.no:konferanse
 $ git push iterate master
 ```
-
-[Nginx buildpack]: https://github.com/rhy-jot/buildpack-nginx
-[app.iterate.no]: https://app.iterate.no/
-
 
 ## Updating the conference program
 The program is scraped from a Google Spreadsheet using this command:
