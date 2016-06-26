@@ -4,7 +4,9 @@
 var userId;
 var _authHandlers = [];
 
-var firebaseStore = new Firebase('https://blinding-inferno-697.firebaseio.com/rating');
+var firebaseUrl = 'https://blinding-inferno-697.firebaseio.com/rating';
+
+var firebaseStore = new Firebase(firebaseUrl);
 
 var firebaseAuth = new FirebaseSimpleLogin(firebaseStore, (error, user) => {
   if (error) {
