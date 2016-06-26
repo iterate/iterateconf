@@ -25,6 +25,8 @@ dependencies.
 For CSS, the grid and reset are borrowed from the [Foundation framework][].
 Other than that -- you're on your own.
 
+Run `grunt server` to start developing!
+
 [VanillaJS]: http://vanilla-js.com/
 [Grunt]: http://gruntjs.com/
 [Foundation framework]: http://foundation.zurb.com/
