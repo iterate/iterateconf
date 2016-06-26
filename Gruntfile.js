@@ -48,47 +48,14 @@ module.exports = function (grunt) {
         ]
       }
     },
-    transpile: {
-      main: {
-        type: 'amd',
-        files: [{
-          expand: true,
-          cwd: '<%= appConfig.app %>/scripts/',
-          src: ['**/*.js'],
-          dest: '.tmp/amdscripts/',
-          ext: '.amd.js'
-        }]
-      }
-    },
-    concat: {
-      amd: {
-        src: '.tmp/amdscripts/**/*.amd.js',
-        dest: '.tmp/iterateconf.amd.js'
-      }
-    },
-    traceur: {
+    babel: {
       options: {
-        //sourceMaps: true,
-        //freeVariableChecker: false,
-        //experimental: true,
-        blockBinding: true
+        sourceMap: true,
+        presets: ['es2015']
       },
       dist: {
         files: {
-          '.tmp/iterateconf.es3.amd.js': ['.tmp/iterateconf.amd.js']
-        }
-      }
-    },
-    wrapamd: {
-      dist: {
-        src: [
-          '<%= appConfig.app %>/scripts/vendor/loader.js',
-          '.tmp/iterateconf.es3.amd.js'
-        ],
-        dest: '.tmp/scripts/iterateconf.js',
-        options: {
-          barename: 'main',
-          namespace: 'IterateConf'
+          '.tmp/scripts/iterateconf.js': '<%= appConfig.app %>/scripts/**/*.js'
         }
       }
     },
@@ -96,7 +63,7 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= appConfig.dist %>/scripts/iterateconf.js': [
-            '<%= wrapamd.dist.dest %>'
+            '.tmp/scripts/iterateconf.js'
           ]
         }
       }
@@ -234,10 +201,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('transpilejs', [
-    'transpile',
-    'concat',
-    'traceur',
-    'wrapamd'
+    'babel'
   ]);
 
   grunt.registerTask('server', function (target) {
