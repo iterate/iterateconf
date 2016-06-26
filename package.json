@@ -10,7 +10,7 @@
     }
   ],
   "scripts": {
-    "start": "NODE_ENV=production harp server -p $PORT",
+    "start": "NODE_ENV=production http-server -p $PORT",
     "build": "grunt build",
     "update-schedule": "node --harmony bin/update-schedule.js",
     "calculate-ratings": "node --harmony bin/calculate-ratings.js"
@@ -28,7 +28,7 @@
     }
   ],
   "dependencies": {
-    "harp": "^0.17.0"
+    "http-server": "^0.9.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
