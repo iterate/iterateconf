@@ -1,8 +1,8 @@
 /*jshint browser:true*/
 
-import { roughTimeslots } from 'program';
-import { showScores } from 'scoreboard';
-import { onClick, removeClick } from 'utils';
+import { roughTimeslots } from './program';
+import { showScores } from './scoreboard';
+import { onClick, removeClick } from './utils';
 
 var _leftMenuToggled = false;
 var menuWidth = '160px';

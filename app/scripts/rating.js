@@ -1,7 +1,7 @@
 /*jshint browser:true*/
 /*globals console,Firebase,FirebaseSimpleLogin*/
 
-import { firebaseStore, onLoginStateChanged } from 'firebase';
+import { firebaseStore, onLoginStateChanged } from './firebase';
 
 var domCache = {}, userId;
 

@@ -48,23 +48,13 @@ module.exports = function (grunt) {
         ]
       }
     },
-    babel: {
-      options: {
-        sourceMap: true,
-        presets: ['es2015']
-      },
+    browserify: {
       dist: {
+        options: {
+          transform: [["babelify", { presets: ["es2015"] }]]
+        },
         files: {
-          '.tmp/scripts/iterateconf.js': '<%= appConfig.app %>/scripts/**/*.js'
-        }
-      }
-    },
-    uglify: {
-      dist: {
-        files: {
-          '<%= appConfig.dist %>/scripts/iterateconf.js': [
-            '.tmp/scripts/iterateconf.js'
-          ]
+          ".tmp/scripts/iterateconf.js": "<%= appConfig.app %>/scripts/main.js"
         }
       }
     },
@@ -201,7 +191,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('transpilejs', [
-    'babel'
+    'browserify'
   ]);
 
   grunt.registerTask('server', function (target) {

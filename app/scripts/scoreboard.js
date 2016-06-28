@@ -1,8 +1,8 @@
 /*jshint browser:true*/
 
-import { onClick, removeClick } from 'utils';
+import { onClick, removeClick } from './utils';
 
-import { firebaseStore } from 'firebase';
+import { firebaseStore } from './firebase';
 
 var domCache = {};
 

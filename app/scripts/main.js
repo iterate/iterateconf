@@ -1,3 +1,3 @@
-import 'menu';
-import 'appupdate';
-import 'rating';
+import './menu';
+import './appupdate';
+import './rating';
