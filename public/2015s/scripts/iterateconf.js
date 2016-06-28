@@ -1,0 +1,1 @@
+"use strict";var onUpdateReady=function(){window.applicationCache.status==window.applicationCache.UPDATEREADY&&(window.applicationCache.swapCache(),window.location.reload())},bindToAppCacheEvent=function(a,b){window.applicationCache&&window.applicationCache.addEventListener(a,b,!1)};window.addEventListener("load",function(a){bindToAppCacheEvent("updateready",onUpdateReady)},!1);
