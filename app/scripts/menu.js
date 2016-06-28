@@ -29,12 +29,12 @@ var buildMenu = () => {
 
   nav.appendChild(_buildMenuItem('Oversikt', '#section-welcome'));
 
-  var $stats = _buildMenuItem('Ratings', '#');
-  onClick($stats, (e) => {
-    e.preventDefault();
-    showScores(uiCache.scoreboard);
-  });
-  nav.appendChild($stats);
+  // var $stats = _buildMenuItem('Ratings', '#');
+  // onClick($stats, (e) => {
+  //   e.preventDefault();
+  //   showScores(uiCache.scoreboard);
+  // });
+  // nav.appendChild($stats);
 
   roughTimeslots.forEach((slot) => {
     nav.appendChild(_buildMenuItem(slot.str, '#slot-' + slot.id));
