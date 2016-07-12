@@ -36,6 +36,10 @@ Run `grunt server` to start developing!
 Running with Harp on konferanse.app.iterate.no
 
 ```shell
+$ grunt build
+```
+
+```shell
 $ git remote add iterate dokku@app.iterate.no:konferanse
 $ git push iterate master
 ```
