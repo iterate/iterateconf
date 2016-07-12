@@ -51,10 +51,10 @@ module.exports = function (grunt) {
     browserify: {
       dist: {
         options: {
-          transform: [["babelify", { presets: ["es2015"] }]]
+          transform: [['babelify', { presets: ['es2015'] }]]
         },
         files: {
-          ".tmp/scripts/iterateconf.js": "<%= appConfig.app %>/scripts/main.js"
+          '.tmp/scripts/iterateconf.js': '<%= appConfig.app %>/scripts/main.js'
         }
       }
     },
@@ -213,7 +213,6 @@ module.exports = function (grunt) {
     'clean:dist',
     'useminPrepare',
     'transpilejs',
-    'uglify',
     'htmlmin:dist',
     'cssmin',
     'autoprefixer',
