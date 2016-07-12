@@ -37,12 +37,7 @@ var _getTalkTmpl = function(talk, single, saveAsPrev) {
     '<h4 class="workshop">Workshop</h4>' : '';
   var description = saveAsPrev ?
     '(Fortsetter fra forrige slot.)' : talk.beskrivelse;
-  var rating = [
-    '<span data-val="4">☆</span>',
-    '<span data-val="3">☆</span>',
-    '<span data-val="2">☆</span>',
-    '<span data-val="1">☆</span>',
-  ].join('');
+
   return [
     '<article id="talk-' + talk.id + '"',
     '         class="small-12 large-6' + centered + ' columns">',
@@ -53,9 +48,6 @@ var _getTalkTmpl = function(talk, single, saveAsPrev) {
     '    </div>',
     '    <div class="small-12 medium-6 columns">',
     '      <h2>' + talk.tittel + '</h2>',
-    '      <div class="rating" data-talkid=' + talk.id + '>',
-    rating,
-    '      </div>',
     '      <span class="byline">' + talk.username + '</span>',
     workshopEl,
     '    </div>',
