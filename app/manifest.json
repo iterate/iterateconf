@@ -1,0 +1,17 @@
+{
+  "name": "Iteratekonferansen",
+  "short_name": "Iteratekonferansen",
+  "icons": [{
+      "src": "images/icons/iterate-logo-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "images/icons/iterate-logo-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#006fac"
+}
