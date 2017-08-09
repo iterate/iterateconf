@@ -1,4 +1,4 @@
-var cacheName = 'konferanse-app-shell-4';
+var cacheName = 'konferanse-app-shell-6';
 var filesToCache = [
   '/',
   '/index.html',
